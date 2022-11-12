@@ -1,0 +1,13 @@
+login/sign up
+frontend
+backend
+
+BMI Calculator
+
+error removal
+new model.py (login data, user data)
+user calorie setting likes calorie limit and target calories
+progress circle- percetage, consumed by total ratio
+User profile
+
+openAI- food calorie information API
