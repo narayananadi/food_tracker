@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 
 from foodtracker.models import Food, Log
-from foodtracker.extensions import db
+from foodtracker.extensions import db            
 
 from datetime import datetime 
 
