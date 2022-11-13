@@ -211,13 +211,14 @@ def signup():
 
 @main.route('/forgot', methods=['GET', 'POST'])
 def forgot():
+    error_dict = {"email_exists":False}
     if request.method == 'POST':
         req_email = request.form['email']
         req_new_password = request.form['n_password']
         if_email = db.session.execute(UserData.query.filter_by(email=req_email)).first()
         if not if_email:
             print("email doesnot exist")
-            error_dict = {"wrong_pass":True}
+            error_dict = {"email_exists":True}
             return render_template('forgot.html', error_dict=error_dict)
 
         ciphered_pass = cipher_suite.encrypt(bytes(req_new_password, encoding='utf8'))
