@@ -26,7 +26,7 @@ class UserData(db.Model):
     id = db.Column(db.String(50), primary_key=True)
     username = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(50),unique = True, nullable=False)
+    email = db.Column(db.String(50), unique = True, nullable=False)
     weight = db.Column(db.Integer, nullable=False)
     height = db.Column(db.Integer, nullable=False)
     height_unit = db.Column(db.String(50), nullable=False)

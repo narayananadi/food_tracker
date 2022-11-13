@@ -1,10 +1,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-
+import sqlite3
 from foodtracker.models import Food, Log, UserData
 from foodtracker.extensions import db            
 import uuid
 from datetime import datetime 
+from cryptography.fernet import Fernet
 
+
+key = b'pRmgMa8T0INjEAfksaq2aafzoZXEuwKI7wDe4c1F8AY='
+cipher_suite = Fernet(key)
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -144,20 +148,44 @@ def remove_food_from_log(log_id, food_id):
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
+    error_dict = {"email_exists":False,"wrong_pass":False,"login_err":False}
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']    
-        print(email, password)
-    return render_template('login.html')
+        req_email = request.form['email']
+        if_email = db.session.execute(UserData.query.filter_by(email=req_email)).first()
+        if not if_email:
+            print("email doesnot exist")
+            error_dict = {"email_exists":False,"wrong_pass":False,"login_err":True}
+            return render_template('login.html', error_dict=error_dict)
+        actual_pass = if_email[2]
+        unciphered_pass = (cipher_suite.decrypt(actual_pass))
+        req_password = request.form['password'] 
+        req_password = bytes(req_password, encoding='utf8')
+        if req_password != unciphered_pass:
+            print("invalid password")
+            error_dict = {"email_exists":False,"wrong_pass":True,"login_err":False}
+            return render_template('login.html', error_dict=error_dict)
+    return render_template('login.html', error_dict=error_dict)
 
 
 @main.route('/signup', methods=['GET', 'POST'])
 def signup():
+    error_dict = {"email_exists":False,"wrong_pass":False,"login_err":False}
     if request.method == 'POST':
+        req_id = str(uuid.uuid4())
         req_email = request.form['email'] 
+        is_email = db.session.execute(UserData.query.filter_by(email=req_email)).first()
+        if is_email:
+            error_dict = {"email_exists":True,"wrong_pass":False,"login_err":False}
+            print("email already exists")
+            return render_template('login.html' , error_dict=error_dict)
+
         req_username = request.form['username']
         req_password = request.form['password']
-        req_id = str(uuid.uuid4())
+
+       
+        ciphered_pass = cipher_suite.encrypt(bytes(req_password, encoding='utf8'))
+        print(ciphered_pass) 
+        req_password = ciphered_pass
         req_weight = 0
         req_height = 0
         req_weight_unit = "KGS"
@@ -170,7 +198,11 @@ def signup():
         height = req_height,
         weight_unit = req_weight_unit,
         height_unit = req_height_unit)
+
+
         db.session.add(entry)
         db.session.commit()
-        
-    return render_template('login.html')
+
+        return render_template('login.html', error_dict=error_dict)
+
+    return render_template('login.html', error_dict=error_dict)
