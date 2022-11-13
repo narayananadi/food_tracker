@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask_session import Session
 import sqlite3
 from foodtracker.models import Food, Log, UserData
 from foodtracker.extensions import db            
@@ -164,6 +165,9 @@ def login():
             print("invalid password")
             error_dict = {"email_exists":False,"wrong_pass":True,"login_err":False}
             return render_template('login.html', error_dict=error_dict)
+        session["name"] = if_email[0]
+        return render_template('index.html')
+
     return render_template('login.html', error_dict=error_dict)
 
 
@@ -227,3 +231,32 @@ def forgot():
         return render_template('login.html', error_dict=error_dict)
     return render_template('forgot.html', error_dict=error_dict)
 
+
+@main.route('/profile', methods=['GET', 'POST'])
+def user_profile():
+    uid = session["name"]
+    usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
+    user_details = {"email":usr_dat[2], 
+     "name":usr_dat[1], 
+     "height":usr_dat[4],
+     "weight":usr_dat[5], 
+     "calories":usr_dat[6],
+     "carbs":usr_dat[6], 
+     "proteins":usr_dat[7],
+     "fats": usr_dat[8]
+    }
+    error_dict = {"email_exists":False}
+    if request.method == 'POST':
+        update_dict = {}
+        for keys in request.form.keys():
+            update_dict[keys] = request.form[keys]
+        UserData.query.filter_by(id=uid).update(update_dict)        
+        db.session.commit()
+        return render_template('profile.html', error_dict=error_dict)
+    return render_template('profile.html', user_details=user_details)
+
+
+@main.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session["name"] = None
+    return render_template('login.html')
