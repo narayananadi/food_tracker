@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 
-from foodtracker.models import Food, Log
+from foodtracker.models import Food, Log, UserData
 from foodtracker.extensions import db            
-
+import uuid
 from datetime import datetime 
 
 main = Blueprint('main', __name__)
@@ -140,3 +140,37 @@ def remove_food_from_log(log_id, food_id):
     db.session.commit()
 
     return redirect(url_for('main.view', log_id=log_id))
+
+
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']    
+        print(email, password)
+    return render_template('login.html')
+
+
+@main.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        req_email = request.form['email'] 
+        req_username = request.form['username']
+        req_password = request.form['password']
+        req_id = str(uuid.uuid4())
+        req_weight = 0
+        req_height = 0
+        req_weight_unit = "KGS"
+        req_height_unit = "CMS"
+        entry = UserData(id = req_id, 
+        email = req_email, 
+        username = req_username, 
+        password = req_password, 
+        weight = req_weight,
+        height = req_height,
+        weight_unit = req_weight_unit,
+        height_unit = req_height_unit)
+        db.session.add(entry)
+        db.session.commit()
+        
+    return render_template('login.html')

@@ -1,6 +1,6 @@
 login/sign up
-frontend
-backend
+frontend      ## DONE ##
+backend       ## DONE ##
 
 BMI Calculator
 
