@@ -244,10 +244,6 @@ body {
    }
 }
 .validity{
-<<<<<<< HEAD
-    font-size: 10px;
-=======
     font-size: 13px;
->>>>>>> 649bd739c9668600633c54575ccc5bf5ad0ab148
     color: red;
 }
