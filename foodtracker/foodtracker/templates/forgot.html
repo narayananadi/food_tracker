@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/foodtracker/foodtracker/static/css/forgot.css">
+    <title>Forgot Password</title>
+</head>
+
+<body>
+    <center>
+        <div class="main">
+            <div class="container a-container" id="a-container">
+                <h1>Reset Password</h1><br>
+                <form id="res_form" name="res_form" action="/forgot" method="post">
+                    <input class="form__input" type="text" placeholder="Email" name="email"><br>
+                    {% if error_dict["email_exists"] %}<span class="validity">Email already exists</span> {% endif%}
+                    <input class="form__input" type="password" placeholder="New Password" name="n_password" id="npass" /><br>
+                    <input class="form__input" type="password" placeholder="Confirm Password" name="c_password" id="cpass"/><br>
+                    <span class="visi" id="visi">Password doesn't match</span><br>
+                    <button onclick="pass_match()" class="form__button button" type="submit" form="b-form">LOG IN</button>
+                </form>
+            </div>
+        </div>
+    </center>
+    <script>
+        function pass_match() {
+           var n =  document.getElementById("npass").value
+           var c = document.getElementById("cpass").value
+           var v = document.getElementById("visi")
+           if (n != c){
+            v.style.visibility="visible"
+           }
+           else{
+            v.style.visibility="hidden"
+            document.getElementById("res_form").submit();
+           }
+        }
+    </script>
+</body>
+
+</html>

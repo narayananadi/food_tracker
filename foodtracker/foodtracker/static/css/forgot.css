@@ -14,20 +14,16 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     background-color: #ecf0f3;
-    color: #a0a5a8;
-}
-
-.visi{
-    visibility: hidden;
+    color: #242526;
 }
 /**/
 .main {
     position: relative;
-    width: 1000px;
-    min-width: 1000px;
-    min-height: 600px;
-    height: 600px;
-    padding: 25px;
+    /* width: 550px; */
+    min-width: max-content;
+    min-height: max-content;
+    /* height: 400px; */
+    /* padding: 25px; */
     background-color: #ecf0f3;
     box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
     border-radius: 12px;
@@ -54,14 +50,14 @@ body {
    }
 }
 .container {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: relative;
     top: 0;
-    width: 600px;
-    height: 100%;
-    padding: 25px;
+    /* width: 600px;
+    height: 100%; */
+    padding: 70px;
     background-color: #ecf0f3;
     transition: 1.25s;
 }
@@ -145,11 +141,12 @@ body {
 .form__button{
     cursor: pointer;
 }
-/**/
-.a-container {
-    z-index: 100;
-    left: calc(100% - 600px);
+
+.visi{
+    visibility: hidden;
+    color: red;
 }
+/**/
 .b-container {
     left: calc(100% - 600px);
     z-index: 0;
@@ -243,7 +240,7 @@ body {
         width: 500px;
    }
 }
-.validity{
+.vlaidity{
     font-size: 6px;
     color: red;
 }
