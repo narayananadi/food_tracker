@@ -206,3 +206,23 @@ def signup():
         return render_template('login.html', error_dict=error_dict)
 
     return render_template('login.html', error_dict=error_dict)
+
+
+
+@main.route('/forgot', methods=['GET', 'POST'])
+def forgot():
+    if request.method == 'POST':
+        req_email = request.form['email']
+        req_new_password = request.form['n_password']
+        if_email = db.session.execute(UserData.query.filter_by(email=req_email)).first()
+        if not if_email:
+            print("email doesnot exist")
+            error_dict = {"wrong_pass":True}
+            return render_template('forgot.html', error_dict=error_dict)
+
+        ciphered_pass = cipher_suite.encrypt(bytes(req_new_password, encoding='utf8'))
+        UserData.query.filter_by(email=req_email).update(dict(password=ciphered_pass))
+        db.session.commit()
+        return render_template('login.html', error_dict=error_dict)
+    return render_template('forgot.html', error_dict=error_dict)
+
