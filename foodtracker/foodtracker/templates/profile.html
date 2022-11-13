@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Food Tracker | Home</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu:400,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bs/css/united.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" />
+</head>
+
+<body>
+    <div class="container-fluid" id="wrapper">
+        <div class="row" id="homeJumbo">
+            <div class="overlay"></div>
+            <div class="col-lg-12">
+                <h1>
+                    <a href="{{ url_for('main.index') }}">FOOD TRACKER</a>
+                </h1>
+
+                <div class="row t20">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <ul class="nav nav-pills nav-justified">
+                            <li role="presentation" class="active">
+                                <a href="{{ url_for('main.index') }}" title="Home">Home</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
+                            </li>
+                            <li role="login">
+                                <a href="/login" title="login">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>
+        <div class="flex">
+            <div class="main_pro">
+                <div class="container_pro" id="a-container">
+                    <h1>Reset Password</h1><br>
+                    <form id="res_form" name="res_form" action="/forgot" method="post">
+                        <input class="form__input_pro" type="text" placeholder="Height" name="height"><br>
+                        <input class="form__input_pro" type="text" placeholder="Weight" name="weight" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Calories" name="calories" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Carbohydrates"
+                            name="carbohydrates" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Proteins" name="proteins" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Fats" name="fats" /><br>
+                        <button onclick="pass_match()" class="form__button_pro button_pro" type="submit"
+                            form="b-form">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{{ url_for('static', filename='bs/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+
+</html>

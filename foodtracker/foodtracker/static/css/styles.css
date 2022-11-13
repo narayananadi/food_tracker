@@ -80,3 +80,25 @@ footer {
 	color: black;
 	margin-bottom: 20px;
 }
+.bmi{
+	max-width: max-content;
+	max-height: max-content;
+	position: absolute;
+	padding: 15px;
+	background-color: #f6f6f6 !important;
+	border-radius: 4px;
+	border: none;
+	margin-top: 20px;
+	z-index: 100;
+}
+
+.bmi input{
+	border-radius: 5px;
+}
+.bmi button{
+	background-color: #e95420;
+	border: 1px solid black;
+	border-radius: 5px;
+	color:white;
+	font-family: 'Ubuntu';
+}
