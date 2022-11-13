@@ -135,6 +135,11 @@ body {
     box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
     border: none;
     outline: none;
+    cursor: pointer;
+}
+
+.form__button{
+    cursor: pointer;
 }
 /**/
 .a-container {
@@ -191,12 +196,13 @@ body {
 .switch__button {
     cursor: pointer;
 }
-.switch__button:hover {
+.switch__button:hover, .form__button:hover {
     box-shadow: 6px 6px 10px #d1d9e6, -6px -6px 10px #f9f9f9;
+    background-image: blue;
     transform: scale(0.985);
     transition: 0.25s;
 }
-.switch__button:active, .switch__button:focus {
+.switch__button:active, .switch__button:focus, .form__button:active, .form__button:focus {
     box-shadow: 2px 2px 6px #d1d9e6, -2px -2px 6px #f9f9f9;
     transform: scale(0.97);
     transition: 0.25s;
@@ -232,4 +238,8 @@ body {
     30%, 50% {
         width: 500px;
    }
+}
+.vlaidity{
+    font-size: 6px;
+    color: red;
 }

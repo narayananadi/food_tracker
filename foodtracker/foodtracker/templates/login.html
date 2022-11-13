@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
@@ -16,7 +15,8 @@
                 <h2 class="form_title title">Create Account</h2>
                 <div class="form__icons"></div>
                 <input class="form__input" type="text" placeholder="Name", name="username">
-                <input class="form__input" type="text" placeholder="Email", name="email">
+                <input class="form__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Put valid email ID such as example@example.com" placeholder="Email", name="email">
+                {# {% if error_dict["email_exists"] %}<span class="validity">Email already exists</span> {% endif%} #}
                 <input class="form__input" type="password" placeholder="Password", name="password">
                 <button class="form__button button" type="submit">SIGN UP</button>
             </form>
@@ -27,7 +27,9 @@
                 <div class="form__icons"></div>
                 <input class="form__input" type="text" placeholder="Email" name="email">
                 <input class="form__input" type="password" placeholder="Password" name="password"><a class="form__link">Forgot your password?</a>
+                {# {% if error_dict["wrong_pass"] %}<span class="validity">Please enter correct password</span> {% endif%} #}
                 <button class="form__button button" type="submit" form="b-form">LOG IN</button>
+                <a href="/forgot">Forgot password?</a>
             </form>
         </div>
         <div class="switch" id="switch-cnt">
@@ -35,7 +37,7 @@
             <div class="switch__circle switch__circle--t"></div>
             <div class="switch__container" id="switch-c1">
                 <h2 class="switch__title title">Welcome !</h2>
-                <p class="switch__description description">To keep connected with us please login with your personal
+                <p class="switch__description description">To keep track of your daily consumption please login with your personal
                     info</p>
                 <button class="switch__button button switch-btn">SIGN IN</button>
             </div>
