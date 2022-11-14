@@ -47,7 +47,11 @@
 								<a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
 							</li>
 							<li role="login">
+								{% if login_dict["isLogged"] %}
+								<a href="/logout" title="logout">Logout</a>
+								{% else %}
 								<a href="/login" title="login">Login</a>
+								{% endif %}
 							</li>
 						</ul>
 					</div>

@@ -14,6 +14,15 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
+    error_dict = {"email_exists":False,"wrong_pass":False,"login_err":False}
+    login_dict={
+        "isLogged":False
+    }
+    if session["name"] is not None:
+        login_dict['isLogged']=True
+    else:
+        return redirect(url_for('main.login'))
+
     logs = Log.query.order_by(Log.date.desc()).all()
 
     log_dates = []
@@ -38,7 +47,7 @@ def index():
             'calories' : calories
         })
 
-    return render_template('index.html', log_dates=log_dates)
+    return render_template('index.html', log_dates=log_dates,login_dict=login_dict)
 
 @main.route('/create_log', methods=['POST'])
 def create_log():
@@ -166,8 +175,8 @@ def login():
             error_dict = {"email_exists":False,"wrong_pass":True,"login_err":False}
             return render_template('login.html', error_dict=error_dict)
         session["name"] = if_email[0]
-        return render_template('index.html')
-
+        
+        return redirect(url_for('main.index'))
     return render_template('login.html', error_dict=error_dict)
 
 
@@ -234,29 +243,34 @@ def forgot():
 
 @main.route('/profile', methods=['GET', 'POST'])
 def user_profile():
-    uid = session["name"]
-    usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
-    user_details = {"email":usr_dat[2], 
-     "name":usr_dat[1], 
-     "height":usr_dat[4],
-     "weight":usr_dat[5], 
-     "calories":usr_dat[6],
-     "carbs":usr_dat[6], 
-     "proteins":usr_dat[7],
-     "fats": usr_dat[8]
-    }
-    error_dict = {"email_exists":False}
-    if request.method == 'POST':
-        update_dict = {}
-        for keys in request.form.keys():
-            update_dict[keys] = request.form[keys]
-        UserData.query.filter_by(id=uid).update(update_dict)        
-        db.session.commit()
-        return render_template('profile.html', error_dict=error_dict)
-    return render_template('profile.html', user_details=user_details)
+    # uid = session["name"]
+    # usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
+    # user_details = {"email":usr_dat[2], 
+    #  "name":usr_dat[1], 
+    #  "height":usr_dat[4],
+    #  "weight":usr_dat[5], 
+    #  "calories":usr_dat[6],
+    #  "carbs":usr_dat[6], 
+    #  "proteins":usr_dat[7],
+    #  "fats": usr_dat[8]
+    # }
+    # error_dict = {"email_exists":False}
+    # if request.method == 'POST':
+    #     update_dict = {}
+    #     for keys in request.form.keys():
+    #         update_dict[keys] = request.form[keys]
+    #     UserData.query.filter_by(id=uid).update(update_dict)        
+    #     db.session.commit()
+    #     return render_template('profile.html', error_dict=error_dict)
+    # return render_template('profile.html', user_details=user_details)
+    return render_template('profile.html')
 
 
 @main.route('/logout', methods=['GET', 'POST'])
 def logout():
     session["name"] = None
-    return render_template('login.html')
+    return redirect(url_for('main.login'))
+
+@main.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    return render_template('dashboard.html')

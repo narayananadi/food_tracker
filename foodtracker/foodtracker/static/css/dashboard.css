@@ -1,0 +1,70 @@
+/* circular progress bar starts here */
+@keyframes growProgressBar {
+    0%, 33% { --pgPercentage: 0; }
+    100% { --pgPercentage: var(--value); }
+  }
+  
+  @property --pgPercentage {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+  
+  div[role="progressbar"] {
+    --size: 20rem;
+    --fg: rgb(63, 131, 198);
+    --bg: #def;
+    --pgPercentage: var(--value);
+    animation: growProgressBar 3s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+      ;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: calc(var(--size) / 5);
+    color: #304253;
+  }
+  
+  div[role="progressbar"]::before {
+    counter-reset: percentage var(--value);
+    content: counter(percentage) '%';
+  }
+  
+  /* demo */
+  .dash {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .nutr{
+    font-size: 15px
+  }
+
+.prog_container{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.prog{
+    background-color: #304253;
+    max-width: fit-content;
+    height: 500px;
+    padding: 50px;
+    border-radius: 8px;
+}
+/* End circular progress bar  */
+body{
+    background-color: aliceblue
+}
+
+body::-webkit-scrollbar{
+    border-radius: 10px;
+}

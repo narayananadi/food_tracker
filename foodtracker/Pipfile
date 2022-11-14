@@ -15,7 +15,7 @@ sqlalchemy = "==1.3.18"
 werkzeug = "==1.0.1"
 numpy = "*"
 cryptography = "*"
-
+Flask-Session= "*"
 [dev-packages]
 
 [requires]
