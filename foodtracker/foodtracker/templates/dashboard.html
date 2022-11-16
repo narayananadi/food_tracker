@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Food Tracker | Home</title>
+    <title>Food Tracker | Dashboard</title>
 
     <link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu:400,700" rel="stylesheet">
 
@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bs/css/united.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js"
+        integrity="sha512-tQYZBKe34uzoeOjY9jr3MX7R/mo7n25vnqbnrkskGr4D6YOoPYSpyafUAzQVjV6xAozAqUFIEFsCO4z8mnVBXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -50,11 +55,17 @@
                 <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:30">
                     <span class="nutr">Calorie</span>
                 </div>
+                <div class="chartjs">
+                    <canvas class="chdata" id="cal"></canvas>
+                </div>
             </div>
             <div class="prog">
                 <!-- bro, jinja need in style value (style="--value:50") -->
                 <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:50">
                     <span class="nutr">Fats</span>
+                </div>
+                <div class="chartjs">
+                    <canvas class="chdata" id="fts"></canvas>
                 </div>
             </div>
             <div class="prog">
@@ -62,11 +73,17 @@
                 <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:70">
                     <span class="nutr">Protein</span>
                 </div>
+                <div class="chartjs">
+                    <canvas class="chdata" id="prot"></canvas>
+                </div>
             </div>
             <div class="prog">
                 <!-- bro, jinja need in style value (style="--value:30") -->
                 <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:30">
                     <span class="nutr">Carbs</span>
+                </div>
+                <div class="chartjs">
+                    <canvas class="chdata" id="cbhs"></canvas>
                 </div>
             </div>
         </div>
@@ -77,6 +94,115 @@
     <!-- Bootstrap JavaScript -->
     <script src="{{ url_for('static', filename='bs/js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <!-- chartjs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.js"></script>
+
+    <!-- chart scripting starts here
+         cal-calorie, fts- fats, prot- protein, cbhs carbohydrates -->
+
+    <script>
+        const cal = document.getElementById('cal');
+        const fts = document.getElementById('fts');
+        const prot = document.getElementById('prot');
+        const cbhs = document.getElementById('cbhs');
+        Chart.defaults.color = "#ffffff";
+        new Chart(cal, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Calories',
+                    data: [12, 19, 3, 5, 10, 4],
+                    borderWidth: 2,
+                    borderRadius: 7,
+                    borderColor: 'white',
+                    backgroundColor: ['green', 'yellow', 'cyan', 'crimson', '#8be433', 'aliceblue']
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins:{
+                    legend:{
+                        labels:{
+                            color:'white'
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(fts, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Fats',
+                    data: [12, 19, 3, 5, 10, 4],
+                    borderWidth: 2,
+                    borderRadius: 7,
+                    borderColor: 'white',
+                    backgroundColor: ['green', 'yellow', 'cyan', 'crimson', '#8be433', 'aliceblue']
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(prot, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Protien',
+                    data: [12, 19, 3, 5, 10, 4],
+                    borderWidth: 2,
+                    borderRadius: 7,
+                    borderColor: 'white',
+                    backgroundColor: ['green', 'yellow', 'cyan', 'crimson', '#8be433', 'aliceblue']
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(cbhs, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Carbohydrates',
+                    data: [12, 19, 3, 5, 10, 4],
+                    borderWidth: 2,
+                    borderRadius: 7,
+                    borderColor: 'white',
+                    backgroundColor: ['green', 'yellow', 'cyan', 'crimson', '#8be433', 'aliceblue']
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
 </body>
 
 </html>

@@ -11,7 +11,7 @@
   }
   
   div[role="progressbar"] {
-    --size: 20rem;
+    --size: 15rem;
     --fg: rgb(63, 131, 198);
     --bg: #def;
     --pgPercentage: var(--value);
@@ -56,15 +56,16 @@
 .prog{
     background-color: #304253;
     max-width: fit-content;
-    height: 500px;
-    padding: 50px;
+    /* height: 500px; */
+    /* padding: 50px; */
     border-radius: 8px;
 }
 /* End circular progress bar  */
 body{
-    background-color: aliceblue
+    background-color: #f0f8ff
 }
 
-body::-webkit-scrollbar{
-    border-radius: 10px;
+.chartjs{
+  width: 50vh;
+  margin-top: 20px;
 }
