@@ -161,7 +161,7 @@ def login():
         req_email = request.form['email']
         if_email = db.session.execute(UserData.query.filter_by(email=req_email)).first()
         if not if_email:
-            print("email doesnot exist")
+            print("email doesn't exist")
             error_dict = {"email_exists":False,"wrong_pass":False,"login_err":True}
             return render_template('login.html', error_dict=error_dict)
         actual_pass = if_email[2]
@@ -257,7 +257,7 @@ def user_profile():
 
     uid = session["name"]
     usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
-    # print(usr_dat)
+    print(usr_dat)
     user_details = {"email":usr_dat[3], 
      "name":usr_dat[1], 
      "height":usr_dat[4],
@@ -274,7 +274,7 @@ def user_profile():
                 update_dict[keys] = request.form[keys]
         UserData.query.filter_by(id=uid).update(update_dict)        
         db.session.commit()
-        return render_template('profile.html')
+        return redirect(url_for('main.user_profile'))
     return render_template('profile.html', user_details=user_details)
 
 

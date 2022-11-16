@@ -57,7 +57,7 @@
     background-color: #304253;
     max-width: fit-content;
     /* height: 500px; */
-    /* padding: 50px; */
+    padding: 5px;
     border-radius: 8px;
 }
 /* End circular progress bar  */
@@ -69,3 +69,51 @@ body{
   width: 50vh;
   margin-top: 20px;
 }
+
+.tab_data{
+  padding: 10px;
+  background-color: #ecf0f3;
+  max-width: max-content;
+  position: absolute;
+  margin-left: 540px;
+  margin-top: 10px;
+  border-radius: 12px;
+}
+th{
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 8px;
+  /* border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px; */
+  font-size: 20px;
+}
+
+th:first-child{
+  border-top-left-radius: 10px;
+}
+th:last-child{
+  border-top-right-radius: 10px;
+}
+
+td{
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 8px;
+  /* border-top-right-radius: 10px; */
+  /* border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; */
+  font-size: 20px;
+}
+
+td:first-child{
+  border-bottom-left-radius: 10px;
+}
+
+td:last-child{
+  border-bottom-right-radius: 10px;
+}
+
+/* .det_tab{
+  border: 1px solid black;
+  border-radius: 10px;
+} */

@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Food Tracker | Home</title>
-
+	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='css/img/favicon.ico') }}">
 	<link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu:400,700" rel="stylesheet">
 
 	<!-- Bootstrap CSS -->
@@ -45,6 +45,12 @@
 							</li>
 							<li role="presentation">
 								<a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
+							</li>
+							<li role="presentation">
+								<a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
+							</li>
+							<li role="presentation">
+								<a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
 							</li>
 							<li role="login">
 								{% if login_dict["isLogged"] %}

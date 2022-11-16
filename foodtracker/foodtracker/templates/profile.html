@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Food Tracker | Home</title>
-
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='css/img/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu:400,700" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
@@ -33,6 +33,12 @@
                             <li role="presentation">
                                 <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
                             </li>
+                            <li role="presentation">
+								<a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
+							</li>
+                            <li role="presentation">
+								<a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
+							</li>
                             <li role="login">
                                 <a href="/logout" title="logout">Logout</a>
                             </li>
@@ -42,27 +48,48 @@
             </div>
         </div>
     </div>
-
-    <center>
-        <table>
-            <tr><td>name</td><td>{{ user_details.name }}</td></tr>
-            <tr><td>height</td><td>{{ user_details.height }}</td></tr>
-            <tr><td>weight</td><td>{{ user_details.weight }}</td></tr>
-            <tr><td>Calories</td><td>{{ user_details.calories }}</td></tr>
-            <tr><td>Carbohydrates</td><td>{{ user_details.carbs }}</td></tr>
-            <tr><td>Proteins</td><td>{{ user_details.proteins }}</td></tr>
-            <tr><td>fats</td><td>{{ user_details.fats }}</td></tr>
-          </table>
+    <div class="tab_data">
+        <table class="det_tab">
+            <tr>
+                <th class="th-first">Name</th>
+                <td class="td-first">{{ user_details.name }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ user_details.height }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ user_details.weight }}</td>
+            </tr>
+            <tr>
+                <th>Calories</th>
+                <td>{{ user_details.calories }}</td>
+            </tr>
+            <tr>
+                <th>Carbohydrates</th>
+                <td>{{ user_details.carbs }}</td>
+            </tr>
+            <tr>
+                <th>Proteins</th>
+                <td>{{ user_details.proteins }}</td>
+            </tr>
+            <tr>
+                <th class="th-last">Fats</th>
+                <td class="td-last">{{ user_details.fats }}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- <center> -->
         <div class="flex">
             <div class="main_pro">
                 <div class="container_pro" id="a-container">
                     <h1>My Details</h1><br>
                     <form id="res_form" name="res_form" action="/profile" method="post">
-                        <input class="form__input_pro" type="text" placeholder="Height" name="height"><br>
                         <input class="form__input_pro" type="text" placeholder="Weight" name="weight" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Height" name="height"><br>
                         <input class="form__input_pro" type="text" placeholder="Calories" name="calories_limit" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Carbohydrates"
-                            name="carbs_limit" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Carbohydrates" name="carbs_limit" /><br>
                         <input class="form__input_pro" type="text" placeholder="Proteins" name="proteins_limit" /><br>
                         <input class="form__input_pro" type="text" placeholder="Fats" name="fats_limit" /><br>
                         <button class="form__button_pro button_pro" type="submit" form="res_form">Submit</button>
@@ -70,7 +97,7 @@
                 </div>
             </div>
         </div>
-    </center>
+    <!-- </center> -->
 
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
