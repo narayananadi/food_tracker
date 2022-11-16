@@ -31,5 +31,9 @@ class UserData(db.Model):
     height = db.Column(db.Integer, nullable=False)
     height_unit = db.Column(db.String(50), nullable=False)
     weight_unit = db.Column(db.String(50), nullable=False)
+    calories_limit = db.Column(db.Integer, nullable=False)
+    carbs_limit = db.Column(db.Integer, nullable=False)
+    proteins_limit = db.Column(db.Integer, nullable=False)
+    fats_limit = db.Column(db.Integer, nullable=False)
 
 

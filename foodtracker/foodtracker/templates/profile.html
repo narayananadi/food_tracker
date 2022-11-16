@@ -34,7 +34,7 @@
                                 <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
                             </li>
                             <li role="login">
-                                <a href="/login" title="login">Login</a>
+                                <a href="/logout" title="logout">Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -42,21 +42,30 @@
             </div>
         </div>
     </div>
+
     <center>
+        <table>
+            <tr><td>name</td><td>{{ user_details.name }}</td></tr>
+            <tr><td>height</td><td>{{ user_details.height }}</td></tr>
+            <tr><td>weight</td><td>{{ user_details.weight }}</td></tr>
+            <tr><td>Calories</td><td>{{ user_details.calories }}</td></tr>
+            <tr><td>Carbohydrates</td><td>{{ user_details.carbs }}</td></tr>
+            <tr><td>Proteins</td><td>{{ user_details.proteins }}</td></tr>
+            <tr><td>fats</td><td>{{ user_details.fats }}</td></tr>
+          </table>
         <div class="flex">
             <div class="main_pro">
                 <div class="container_pro" id="a-container">
                     <h1>My Details</h1><br>
-                    <form id="res_form" name="res_form" action="/forgot" method="post">
+                    <form id="res_form" name="res_form" action="/profile" method="post">
                         <input class="form__input_pro" type="text" placeholder="Height" name="height"><br>
                         <input class="form__input_pro" type="text" placeholder="Weight" name="weight" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Calories" name="calories" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Calories" name="calories_limit" /><br>
                         <input class="form__input_pro" type="text" placeholder="Carbohydrates"
-                            name="carbohydrates" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Proteins" name="proteins" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Fats" name="fats" /><br>
-                        <button onclick="pass_match()" class="form__button_pro button_pro" type="submit"
-                            form="b-form">Submit</button>
+                            name="carbs_limit" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Proteins" name="proteins_limit" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Fats" name="fats_limit" /><br>
+                        <button class="form__button_pro button_pro" type="submit" form="res_form">Submit</button>
                     </form>
                 </div>
             </div>

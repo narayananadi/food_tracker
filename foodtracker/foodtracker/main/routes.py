@@ -14,7 +14,6 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    error_dict = {"email_exists":False,"wrong_pass":False,"login_err":False}
     login_dict={
         "isLogged":False
     }
@@ -51,9 +50,9 @@ def index():
 
 @main.route('/create_log', methods=['POST'])
 def create_log():
-    date = request.form.get('date')
-
-    log = Log(date=datetime.strptime(date, '%Y-%m-%d'))
+    if "date" in request.form.keys():
+        date = request.form.get('date')
+        log = Log(date=datetime.strptime(date, '%Y-%m-%d'))
 
     db.session.add(log)
     db.session.commit()
@@ -91,7 +90,6 @@ def add_post():
         )
     
         db.session.add(new_food)
-
     db.session.commit()
 
     return redirect(url_for('main.add'))
@@ -176,7 +174,7 @@ def login():
             return render_template('login.html', error_dict=error_dict)
         session["name"] = if_email[0]
         
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.dashboard'))
     return render_template('login.html', error_dict=error_dict)
 
 
@@ -203,6 +201,11 @@ def signup():
         req_height = 0
         req_weight_unit = "KGS"
         req_height_unit = "CMS"
+        calories_limit = 0
+        carbs_limit = 0
+        proteins_limit = 0
+        fats_limit = 0
+
         entry = UserData(id = req_id, 
         email = req_email, 
         username = req_username, 
@@ -210,13 +213,19 @@ def signup():
         weight = req_weight,
         height = req_height,
         weight_unit = req_weight_unit,
-        height_unit = req_height_unit)
+        height_unit = req_height_unit,
+        calories_limit=calories_limit,
+        carbs_limit=carbs_limit,
+        proteins_limit=proteins_limit,
+        fats_limit = fats_limit
+        )
 
 
         db.session.add(entry)
         db.session.commit()
+        session["name"] = req_id
 
-        return render_template('login.html', error_dict=error_dict)
+        return redirect(url_for('main.dashboard'))
 
     return render_template('login.html', error_dict=error_dict)
 
@@ -243,30 +252,30 @@ def forgot():
 
 @main.route('/profile', methods=['GET', 'POST'])
 def user_profile():
-    if not session["name"]:
+    if "name" not in session.keys():
         return redirect(url_for('main.login'))
 
     uid = session["name"]
-    # usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
-    # user_details = {"email":usr_dat[2], 
-    #  "name":usr_dat[1], 
-    #  "height":usr_dat[4],
-    #  "weight":usr_dat[5], 
-    #  "calories":usr_dat[6],
-    #  "carbs":usr_dat[6], 
-    #  "proteins":usr_dat[7],
-    #  "fats": usr_dat[8]
-    # }
-    # error_dict = {"email_exists":False}
-    # if request.method == 'POST':
-    #     update_dict = {}
-    #     for keys in request.form.keys():
-    #         update_dict[keys] = request.form[keys]
-    #     UserData.query.filter_by(id=uid).update(update_dict)        
-    #     db.session.commit()
-    #     return render_template('profile.html', error_dict=error_dict)
-    # return render_template('profile.html', user_details=user_details)
-    return render_template('profile.html')
+    usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
+    # print(usr_dat)
+    user_details = {"email":usr_dat[3], 
+     "name":usr_dat[1], 
+     "height":usr_dat[4],
+     "weight":usr_dat[5], 
+     "calories":usr_dat[8],
+     "carbs":usr_dat[9], 
+     "proteins":usr_dat[10],
+     "fats": usr_dat[11]
+    }
+    if request.method == 'POST':
+        update_dict = {}
+        for keys in request.form.keys():
+            if request.form[keys] != "":
+                update_dict[keys] = request.form[keys]
+        UserData.query.filter_by(id=uid).update(update_dict)        
+        db.session.commit()
+        return render_template('profile.html')
+    return render_template('profile.html', user_details=user_details)
 
 
 @main.route('/logout', methods=['GET', 'POST'])
@@ -276,4 +285,20 @@ def logout():
 
 @main.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    return render_template('dashboard.html')
+    if "name" not in session.keys():
+        return redirect(url_for('main.login'))
+
+    uid = session["name"]
+    usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
+
+    user_details = {"email":usr_dat[3], 
+     "name":usr_dat[1], 
+     "height":usr_dat[4],
+     "weight":usr_dat[5], 
+     "calories":usr_dat[8],
+     "carbs":usr_dat[9], 
+     "proteins":usr_dat[10],
+     "fats": usr_dat[11]
+    }
+
+    return render_template('dashboard.html', user_details=user_details)

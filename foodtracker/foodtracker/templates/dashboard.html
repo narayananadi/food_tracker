@@ -40,7 +40,7 @@
                                 <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
                             </li>
                             <li role="login">
-                                <a href="/login" title="login">Login</a>
+                                <a href="/logout" title="logout">Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -88,7 +88,15 @@
             </div>
         </div>
     </center>
-
+    <table>
+        <tr><td>name</td><td>{{ user_details.name }}</td></tr>
+        <tr><td>height</td><td>{{ user_details.height }}</td></tr>
+        <tr><td>weight</td><td>{{ user_details.weight }}</td></tr>
+        <tr><td>Calories</td><td>{{ user_details.calories }}</td></tr>
+        <tr><td>Carbohydrates</td><td>{{ user_details.carbs }}</td></tr>
+        <tr><td>Proteins</td><td>{{ user_details.proteins }}</td></tr>
+        <tr><td>fats</td><td>{{ user_details.fats }}</td></tr>
+      </table>
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
     <!-- Bootstrap JavaScript -->
