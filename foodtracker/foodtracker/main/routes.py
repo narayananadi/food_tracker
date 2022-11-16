@@ -18,7 +18,7 @@ def index():
     login_dict={
         "isLogged":False
     }
-    if session["name"] is not None:
+    if "name" in session.keys():
         login_dict['isLogged']=True
     else:
         return redirect(url_for('main.login'))
@@ -243,7 +243,10 @@ def forgot():
 
 @main.route('/profile', methods=['GET', 'POST'])
 def user_profile():
-    # uid = session["name"]
+    if not session["name"]:
+        return redirect(url_for('main.login'))
+
+    uid = session["name"]
     # usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
     # user_details = {"email":usr_dat[2], 
     #  "name":usr_dat[1], 
@@ -268,7 +271,7 @@ def user_profile():
 
 @main.route('/logout', methods=['GET', 'POST'])
 def logout():
-    session["name"] = None
+    session.clear()
     return redirect(url_for('main.login'))
 
 @main.route('/dashboard', methods=['GET', 'POST'])
