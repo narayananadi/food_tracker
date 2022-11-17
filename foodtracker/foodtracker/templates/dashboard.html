@@ -41,11 +41,11 @@
                                 <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
                             </li>
                             <li role="presentation">
-								<a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
-							</li>
+                                <a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
+                            </li>
                             <li role="presentation">
-								<a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
-							</li>
+                                <a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
+                            </li>
                             <li role="login">
                                 <a href="/logout" title="logout">Logout</a>
                             </li>
@@ -57,67 +57,69 @@
     </div>
     <center>
         <div class="prog_container">
+            <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                style="--value:30">
+                <span class="nutr">Calorie</span>
+            </div>
+            <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                style="--value:50">
+                <span class="nutr">Fats</span>
+            </div>
+            <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                style="--value:70">
+                <span class="nutr">Protein</span>
+            </div>
+            <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                style="--value:30">
+                <span class="nutr">Carbs</span>
+            </div>
+        </div>
+        <div class="prog_container">
             <div class="prog">
-                <!-- bro, jinja need in style value (style="--value:30") -->
-                <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:30">
-                    <span class="nutr">Calorie</span>
-                </div>
                 <div class="chartjs">
                     <canvas class="chdata" id="cal"></canvas>
                 </div>
             </div>
             <div class="prog">
-                <!-- bro, jinja need in style value (style="--value:50") -->
-                <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:50">
-                    <span class="nutr">Fats</span>
-                </div>
                 <div class="chartjs">
                     <canvas class="chdata" id="fts"></canvas>
                 </div>
             </div>
             <div class="prog">
-                <!-- bro, jinja need in style value (style="--value:70") -->
-                <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:70">
-                    <span class="nutr">Protein</span>
-                </div>
                 <div class="chartjs">
                     <canvas class="chdata" id="prot"></canvas>
                 </div>
             </div>
             <div class="prog">
-                <!-- bro, jinja need in style value (style="--value:30") -->
-                <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:30">
-                    <span class="nutr">Carbs</span>
-                </div>
                 <div class="chartjs">
                     <canvas class="chdata" id="cbhs"></canvas>
                 </div>
             </div>
         </div>
-    
-    <div class="tab_data">
-        <table class="det_tab">
-            <tr>
-                <th>Name</th>
-                <th>Weight</th>
-                <th>Height</th>
-                <th>Calories</th>
-                <th>Carbohydrates</th>
-                <th>Proteins</th>
-                <th>Fats</th>
-            </tr>
-            <tr>
-                <td>{{ user_details.name }}</td>
-                <td>{{ user_details.height }}</td>
-                <td>{{ user_details.weight }}</td>
-                <td>{{ user_details.calories }}</td>
-                <td>{{ user_details.carbs }}</td>
-                <td>{{ user_details.proteins }}</td>
-                <td>{{ user_details.fats }}</td>
-            </tr>
-        </table>
-    </div>
-</center>
+
+        <div class="tab_data">
+            <table class="det_tab">
+                <tr>
+                    <th>Name</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Calories</th>
+                    <th>Carbohydrates</th>
+                    <th>Proteins</th>
+                    <th>Fats</th>
+                </tr>
+                <tr>
+                    <td>{{ user_details.name }}</td>
+                    <td>{{ user_details.height }}</td>
+                    <td>{{ user_details.weight }}</td>
+                    <td>{{ user_details.calories }}</td>
+                    <td>{{ user_details.carbs }}</td>
+                    <td>{{ user_details.proteins }}</td>
+                    <td>{{ user_details.fats }}</td>
+                </tr>
+            </table>
+        </div>
+    </center>
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
     <!-- Bootstrap JavaScript -->
@@ -135,7 +137,7 @@
         const fts = document.getElementById('fts');
         const prot = document.getElementById('prot');
         const cbhs = document.getElementById('cbhs');
-        Chart.defaults.color = "#ffffff";
+        Chart.defaults.color = "#000000";
         new Chart(cal, {
             type: 'bar',
             data: {
@@ -146,26 +148,26 @@
                     borderWidth: 2,
                     borderRadius: 7,
                     borderColor: 'white',
-                    backgroundColor: ['green', 'yellow', 'cyan', 'crimson', '#8be433', 'aliceblue']
+                    backgroundColor: ['#00308F', '#00308F', '#00308F', '#00308F', '#00308F', '#00308F']
                 }]
             },
-                        options: {
+            options: {
                 scales: {
                     y: {
                         beginAtZero: true
                     }
                 },
-                plugins:{
-                    legend:{
-                        labels:{
-                            color:'white'
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black'
                         }
                     }
                 },
-                plugins:{
-                    legend:{
-                        labels:{
-                            color:'white'
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black'
                         }
                     }
                 }
@@ -182,19 +184,19 @@
                     borderWidth: 2,
                     borderRadius: 7,
                     borderColor: 'white',
-                    backgroundColor: ['green', 'yellow', 'cyan', 'crimson', '#8be433', 'aliceblue']
+                    backgroundColor: ['#00308F', '#00308F', '#00308F', '#00308F', '#00308F', '#00308F']
                 }]
             },
-                        options: {
+            options: {
                 scales: {
                     y: {
                         beginAtZero: true
                     }
                 },
-                plugins:{
-                    legend:{
-                        labels:{
-                            color:'white'
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black'
                         }
                     }
                 }
@@ -211,19 +213,19 @@
                     borderWidth: 2,
                     borderRadius: 7,
                     borderColor: 'white',
-                    backgroundColor: ['green', 'yellow', 'cyan', 'crimson', '#8be433', 'aliceblue']
+                    backgroundColor: ['#00308F', '#00308F', '#00308F', '#00308F', '#00308F', '#00308F']
                 }]
             },
-                        options: {
+            options: {
                 scales: {
                     y: {
                         beginAtZero: true
                     }
                 },
-                plugins:{
-                    legend:{
-                        labels:{
-                            color:'white'
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black'
                         }
                     }
                 }
@@ -240,19 +242,19 @@
                     borderWidth: 2,
                     borderRadius: 7,
                     borderColor: 'white',
-                    backgroundColor: ['green', 'yellow', 'cyan', 'crimson', '#8be433', 'aliceblue']
+                    backgroundColor: ['#00308F', '#00308F', '#00308F', '#00308F', '#00308F', '#00308F']
                 }]
             },
-                        options: {
+            options: {
                 scales: {
                     y: {
                         beginAtZero: true
                     }
                 },
-                plugins:{
-                    legend:{
-                        labels:{
-                            color:'white'
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black'
                         }
                     }
                 }
