@@ -75,6 +75,10 @@
             </div>
         </div>
         <div class="prog_container">
+            <button>Add Food</button>
+            <button>Add log</button>
+        </div>
+        <div class="prog_container">
             <div class="prog">
                 <div class="chartjs">
                     <canvas class="chdata" id="cal"></canvas>
@@ -85,6 +89,8 @@
                     <canvas class="chdata" id="fts"></canvas>
                 </div>
             </div>
+        </div>
+        <div class="prog_container">
             <div class="prog">
                 <div class="chartjs">
                     <canvas class="chdata" id="prot"></canvas>
@@ -141,10 +147,10 @@
         new Chart(cal, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June'],
                 datasets: [{
                     label: 'Calories',
-                    data: [12, 19, 3, 5, 10, 4],
+                    data: [7, 4, 12, 13, 17, 20],
                     borderWidth: 2,
                     borderRadius: 7,
                     borderColor: 'white',
@@ -177,10 +183,10 @@
         new Chart(fts, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June'],
                 datasets: [{
                     label: 'Fats',
-                    data: [12, 19, 3, 5, 10, 4],
+                    data: [9, 11, 3, 7, 4, 20],
                     borderWidth: 2,
                     borderRadius: 7,
                     borderColor: 'white',
@@ -206,10 +212,10 @@
         new Chart(prot, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June'],
                 datasets: [{
                     label: 'Protien',
-                    data: [12, 19, 3, 5, 10, 4],
+                    data: [5, 12, 6, 15, 4, 9],
                     borderWidth: 2,
                     borderRadius: 7,
                     borderColor: 'white',
@@ -235,10 +241,10 @@
         new Chart(cbhs, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June'],
                 datasets: [{
                     label: 'Carbohydrates',
-                    data: [12, 19, 3, 5, 10, 4],
+                    data: [3, 18, 9, 3, 6, 15],
                     borderWidth: 2,
                     borderRadius: 7,
                     borderColor: 'white',

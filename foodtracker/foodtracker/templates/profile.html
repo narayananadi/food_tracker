@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" />
 </head>
 
-<body>
+<body onload="depression()">
     <div class="container-fluid" id="wrapper">
         <div class="row" id="homeJumbo">
             <div class="overlay"></div>
@@ -56,11 +56,11 @@
             </tr>
             <tr>
                 <th>Weight</th>
-                <td>{{ user_details.height }}</td>
+                <td id="weight">{{ user_details.height }}</td>
             </tr>
             <tr>
-                <th>Height</th>
-                <td>{{ user_details.weight }}</td>
+                <th >Height</th>
+                <td id="height">{{ user_details.weight }}</td>
             </tr>
             <tr>
                 <th>Calories</th>
@@ -75,8 +75,12 @@
                 <td>{{ user_details.proteins }}</td>
             </tr>
             <tr>
-                <th class="th-last">Fats</th>
-                <td class="td-last">{{ user_details.fats }}</td>
+                <th>Fats</th>
+                <td>{{ user_details.fats }}</td>
+            </tr>
+            <tr>
+                <th class="th-last">BMI</th>
+                <td id="res" class="td-last"></td>
             </tr>
         </table>
     </div>
@@ -85,13 +89,13 @@
             <div class="main_pro">
                 <div class="container_pro" id="a-container">
                     <h1>My Details</h1><br>
-                    <form id="res_form" name="res_form" action="/profile" method="post">
-                        <input class="form__input_pro" type="text" placeholder="Weight" name="weight" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Height" name="height"><br>
-                        <input class="form__input_pro" type="text" placeholder="Calories" name="calories_limit" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Carbohydrates" name="carbs_limit" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Proteins" name="proteins_limit" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Fats" name="fats_limit" /><br>
+                    <form  id="res_form" name="res_form" action="/profile" method="post">
+                        <input class="form__input_pro" type="text" placeholder="Weight (in kg)" name="weight" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Height (in m)" name="height"><br>
+                        <input class="form__input_pro" type="text" placeholder="Calories (in gms)" name="calories_limit" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Carbohydrates (in gms)" name="carbs_limit" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Proteins (in gms)" name="proteins_limit" /><br>
+                        <input class="form__input_pro" type="text" placeholder="Fats (in gms)" name="fats_limit" /><br>
                         <button class="form__button_pro button_pro" type="submit" form="res_form">Submit</button>
                     </form>
                 </div>
@@ -103,7 +107,7 @@
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
     <!-- Bootstrap JavaScript -->
     <script src="{{ url_for('static', filename='bs/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
 </body>
 
 </html>

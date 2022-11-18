@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700&display=swap');
 body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .flex{
@@ -13,8 +14,8 @@ body{
 .main_pro {
     min-width: fit-content;
     min-height: fit-content;
-    background-color: #ecf0f3;
-    box-shadow: 17px 24px 22px 0px rgba(0,0,0,0.3);
+    /* background-color: #ecf0f3; */
+    /* box-shadow: 17px 24px 22px 0px rgba(0,0,0,0.3); */
     border-radius: 12px;
     overflow: hidden;
 }
@@ -25,7 +26,7 @@ body{
     align-items: center;
     position: relative;
     padding: 70px;
-    background-color: #ecf0f3;
+    /* background-color: #ecf0f3; */
     transition: 1.25s;
 }
 
@@ -42,7 +43,6 @@ body{
     letter-spacing: 0.15px;
     border: none;
     outline: none;
-    font-family: 'Montserrat', sans-serif;
     background-color: #ecf0f3;
     transition: 0.25s ease;
     border-radius: 8px;
@@ -72,11 +72,11 @@ body{
 }
 .tab_data{
     padding: 10px;
-    background-color: #ecf0f3;
+    /* background-color: #ecf0f3; */
     max-width: max-content;
     position: absolute;
     margin-left: 450px;
-    margin-top: 10px;
+    margin-top: 105px;
     border-radius: 12px;
 }
 th{

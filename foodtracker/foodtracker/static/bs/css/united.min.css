@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700&display=swap');
 /*@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700");*/
 /*!
  * bootswatch v3.3.7
@@ -13,7 +14,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-    font-family: sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -135,7 +136,7 @@ code,
 kbd,
 pre,
 samp {
-    font-family: monospace, monospace;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-size: 1em
 }
 
@@ -1411,7 +1412,7 @@ html {
 }
 
 body {
-    font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333333;
@@ -1422,7 +1423,7 @@ input,
 button,
 select,
 textarea {
-    font-family: inherit;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-size: inherit;
     line-height: inherit
 }
@@ -1527,7 +1528,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-weight: 500;
     line-height: 1.1;
     color: inherit
@@ -1753,7 +1754,7 @@ a.text-danger:focus {
 
 .bg-primary {
     color: #fff;
-    background-color: #e95420
+    background-color: #00308F
 }
 
 a.bg-primary:hover,
@@ -1943,7 +1944,7 @@ code,
 kbd,
 pre,
 samp {
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 code {
@@ -3983,7 +3984,7 @@ fieldset[disabled] .btn-default.focus {
 
 .btn-primary {
     color: #ffffff;
-    background-color: #e95420;
+    background-color: #00308F;
     border-color: #e95420
 }
 
@@ -4037,7 +4038,7 @@ fieldset[disabled] .btn-primary:focus,
 .btn-primary.disabled.focus,
 .btn-primary[disabled].focus,
 fieldset[disabled] .btn-primary.focus {
-    background-color: #e95420;
+    background-color: #00308F;
     border-color: #e95420
 }
 
@@ -4495,7 +4496,7 @@ tbody.collapse.in {
 .dropdown-menu>li>a:focus {
     text-decoration: none;
     color: #ffffff;
-    background-color: #e95420
+    background-color: #00308F
 }
 
 .dropdown-menu>.active>a,
@@ -4504,7 +4505,7 @@ tbody.collapse.in {
     color: #ffffff;
     text-decoration: none;
     outline: 0;
-    background-color: #e95420
+    background-color: #00308F
 }
 
 .dropdown-menu>.disabled>a,
@@ -4991,13 +4992,15 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 
 .nav>li {
     position: relative;
-    display: block
+    display: block;
+    max-width: max-content;
 }
 
 .nav>li>a {
     position: relative;
     display: block;
-    padding: 10px 15px
+    padding: 10px 15px;
+    max-width: max-content;
 }
 
 .nav>li>a:hover,
@@ -5007,7 +5010,8 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 }
 
 .nav>li.disabled>a {
-    color: #aea79f
+    color: #aea79f;
+    max-width: max-content;
 }
 
 .nav>li.disabled>a:hover,
@@ -5136,7 +5140,7 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 .nav-pills>li.active>a:hover,
 .nav-pills>li.active>a:focus {
     color: #ffffff;
-    background-color: #e95420
+    background-color: #00308F
 }
 
 .nav-stacked>li {
@@ -5615,7 +5619,7 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 }
 
 .navbar-default {
-    background-color: #e95420;
+    background-color: #00308F;
     border-color: #d34615
 }
 
@@ -6074,7 +6078,7 @@ a.label:focus {
 }
 
 .label-primary {
-    background-color: #e95420
+    background-color: #00308F
 }
 
 .label-primary[href]:hover,
@@ -6397,7 +6401,7 @@ a.thumbnail.active {
     line-height: 20px;
     color: #ffffff;
     text-align: center;
-    background-color: #e95420;
+    background-color: #00308F;
     -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
     -webkit-transition: width 0.6s ease;
@@ -6596,7 +6600,7 @@ button.list-group-item {
 .list-group-item.active:focus {
     z-index: 2;
     color: #ffffff;
-    background-color: #e95420;
+    background-color: #00308F;
     border-color: #e95420
 }
 
@@ -7067,7 +7071,7 @@ button.list-group-item-danger.active:focus {
 
 .panel-primary>.panel-heading {
     color: #ffffff;
-    background-color: #e95420;
+    background-color: #00308F;
     border-color: #e95420
 }
 
@@ -7410,7 +7414,7 @@ button.close {
     position: absolute;
     z-index: 1070;
     display: block;
-    font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -7544,7 +7548,7 @@ button.close {
     display: none;
     max-width: 276px;
     padding: 1px;
-    font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -7854,7 +7858,7 @@ button.close {
     width: 20px;
     height: 20px;
     line-height: 1;
-    font-family: serif
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .carousel-control .icon-prev:before {

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700&display=swap');
 /* circular progress bar starts here */
 @keyframes growProgressBar {
 
@@ -29,12 +30,23 @@ div[role="progressbar"] {
   display: grid;
   place-items: center;
   background:
-    radial-gradient(closest-side, #387bb6 0%, transparent 0 80%, #77a5cd 0),
+    radial-gradient(closest-side, #387bb6 0%, transparent 0 95%, #77a5cd 0),
     conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat Alternates', sans-serif;
   font-size: calc(var(--size) / 5);
   color: #000000;
+  z-index: 100;
   /* border: 8px solid white; */
+}
+div[role="progressbar"]:hover{
+  --size: 16rem;
+  --fg: #00308f;
+  --bg: #def;
+  --pgPercentage: var(--value);
+  background:
+    radial-gradient(closest-side, #387bb6 0%, transparent 0 92%, #77a5cd 0),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+    color: crimson;
 }
 
 div[role="progressbar"]::before {
@@ -52,40 +64,66 @@ div[role="progressbar"]::before {
 }
 
 .nutr {
-  font-size: 15px
+  font-size: 18px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 600;
 }
 
 .prog_container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 20px;
 }
 
-/* .prog {
-  background-color: #304253;
+.prog_container>button{
+  max-width: max-content;
+  font-size: 20px;
+  margin-right: 48px;
+  padding: 8px;
+  border-radius: 5px;
+  border-top: none;
+  border-right: none;
+  border-bottom: 10px solid #77a5cd;
+  border-left: none;
+  color: #def;
+  /* border: none; */
+  position: relative;
+  background-color: #00308F;
+}
+.prog_container>button:hover{
+  color:#00308F;
+  background-color: #77a5cd;
+  border-bottom:10px solid #183a5d;
+}
+
+.prog {
+  /* background-color: #ecf0f3; */
   max-width: fit-content;
-  height: 500px;
+  max-height: fit-content;
   padding: 5px;
+  margin-right: 30px;
   border-radius: 8px;
-} */
+}
 
 .bar_pro {
-  margin: 5px;
+  margin-right: 30px;
 }
 
 /* End circular progress bar  */
 body {
-  background-color: #ebe4d9
+  background-color: #ebe4d9;
 }
 
 .chartjs {
   width: 50vh;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .tab_data {
   padding: 10px;
-  background-color: #ecf0f3;
+  /* background-color: #ecf0f3; */
   max-width: max-content;
   position: absolute;
   margin-left: 540px;
@@ -97,8 +135,6 @@ th {
   border-collapse: collapse;
   border: 1px solid black;
   padding: 8px;
-  /* border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px; */
   font-size: 20px;
 }
 
@@ -114,9 +150,6 @@ td {
   border-collapse: collapse;
   border: 1px solid black;
   padding: 8px;
-  /* border-top-right-radius: 10px; */
-  /* border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px; */
   font-size: 20px;
 }
 

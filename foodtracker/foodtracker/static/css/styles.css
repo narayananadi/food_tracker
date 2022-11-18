@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700&display=swap');
 body {
-	background: rgba(0, 0, 0, .4);
-	font-family: 'Ubuntu', sans-serif;
+	background: #ebe4d9;
+	font-family: 'Montserrat Alternates', sans-serif;
 }
 
 ::-webkit-scrollbar{
-	border-radius: 10px;
+	border-radius: 0px;
 	width:10px;
-	background-color:darkslategray;
+	background-color:rgb(8, 186, 221);
 }
 
 ::-webkit-scrollbar-track {
@@ -14,38 +15,38 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #e95420; 
+	background: #00308F; 
 	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #a8350c; 
+	background: #294d94; 
 }
 
 
 
 #homeJumbo {
 	position: relative;
-	min-height: 180px;
-	background: rgba(44, 62, 80, .8);
+	min-height: 150px;
+	background: #2c3e50cc;
 	background-image: url('./img/bg.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
-	border-bottom: 2px solid rgba(44, 62, 80, .8);
-	box-shadow: 7px 1px 2px 2px rgba(44, 62, 80, .8);
+	/* border-bottom: 2px solid #2c3e50cc; */
+	box-shadow: 0px 5px 4px 4px #2c3e50cc;
 }
 #homeJumbo > div.overlay {
 	position: absolute;
-	height: 183px;
+	height: 153px;
 	width: 100%;
-	background: rgba(44, 62, 80, .8);
+	background: #2c3e50cc;
 }
 #homeJumbo h1 {
 	font-size: 30px;
 	color: white;
 	font-family: 'Oswald';
 	text-align: center;
-	padding-top: 20px;
+	/* padding-top: 10px; */
 	font-weight: bolder;
 }
 #homeJumbo h1 > a {
@@ -63,19 +64,24 @@ body {
 	font-size: 25px;
 }
 
+li{
+	max-width: max-content;
+}
+
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, 
 .nav-pills>li.active>a:focus {
 	color: white;
 	border-bottom: 3px solid #2fa4e7;
-	font-weight: bolder;
-	background: rgba(0, 0, 0, .4);
+	/* font-weight: bolder; */
+	background: #00000066;
 }
 .nav-justified>li>a {
 	color: white;
-	font-weight: bolder;
+	/* font-weight: bolder; */
+	width: max-content;
 }
 .nav>li>a:hover, .nav>li>a:focus {
-	background: rgba(0, 0, 0, .4);
+	background: #00000066;
 }
 .nav-pills>li+li {
 	padding-left: 10px;
@@ -107,7 +113,7 @@ footer {
 	background-color: #f6f6f6 !important;
 	border-radius: 4px;
 	border: none;
-	margin-top: 20px;
+	margin-top: 170px;
 	z-index: 100;
 }
 
@@ -115,9 +121,12 @@ footer {
 	border-radius: 5px;
 }
 .bmi button{
-	background-color: #e95420;
+	background-color: #00308F;
 	border: 1px solid black;
 	border-radius: 5px;
 	color:white;
-	font-family: 'Ubuntu';
+}
+
+a[title="Add Food Item"]{
+	max-width: max-content;
 }
