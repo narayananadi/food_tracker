@@ -65,6 +65,9 @@ def add():
 
     uid = session["name"]
     record = None
+    usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
+    print(usr_dat)
+    user_details = {"name":usr_dat[1] }
     if request.method == 'POST':
         food_name = request.form.get('food-name')
         proteins = request.form.get('protein')
@@ -82,7 +85,7 @@ def add():
             Food.query.filter_by(name=food_name).update(dict(name = food_name, proteins = proteins, carbs = carbs, fats = fats, fid = food_id, uid = uid))
 
     foods = Food.query.filter_by(uid=uid).all()
-    return render_template('add.html', foods=foods)
+    return render_template('add.html', foods=foods, user_details=user_details)
 
 
 @main.route('/delete_food/<food_id>')
