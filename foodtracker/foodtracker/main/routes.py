@@ -255,8 +255,9 @@ def user_profile():
         for keys in request.form.keys():
             if request.form[keys] != "":
                 update_dict[keys] = request.form[keys]
-        UserData.query.filter_by(id=uid).update(update_dict)        
-        db.session.commit()
+        if update_dict:
+            UserData.query.filter_by(id=uid).update(update_dict)        
+            db.session.commit()
         return redirect(url_for('main.user_profile'))
     return render_template('profile.html', user_details=user_details)
 
