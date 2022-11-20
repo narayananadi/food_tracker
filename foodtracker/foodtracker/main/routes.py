@@ -289,3 +289,15 @@ def dashboard():
     }
 
     return render_template('dashboard.html', user_details=user_details)
+
+@main.route('/create', methods=['GET', 'POST'])
+def create():
+    if "name" not in session.keys():
+        return redirect(url_for('main.login'))
+
+    uid = session["name"]
+    usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
+
+    user_details = {"name":usr_dat[1]}
+    foods = Food.query.filter_by(uid=uid).all()    
+    return render_template('create_log.html',user_details=user_details,foods=foods)

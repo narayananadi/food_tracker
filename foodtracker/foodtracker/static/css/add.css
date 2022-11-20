@@ -1,0 +1,19 @@
+.prog_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.th_add {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 8px;
+    font-size: 20px;
+}
+
+.td_add {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 8px;
+    font-size: 20px;
+}

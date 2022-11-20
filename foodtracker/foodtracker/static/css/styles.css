@@ -130,3 +130,10 @@ footer {
 a[title="Add Food Item"]{
 	max-width: max-content;
 }
+
+
+
+.heart{
+	font-size: 20px;
+	color: crimson;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Food Tracker | Home</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='css/img/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu:400,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <!-- jinja -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bs/css/united.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_log.css') }}" />
+    <!-- rough -->
+    <!-- <link rel="stylesheet" href="../static/bs/css/united.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/create_log.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css"> -->
+</head>
+
+<body onload="depression()">
+    <div class="container-fluid" id="wrapper">
+        <div class="row" id="homeJumbo">
+            <div class="overlay"></div>
+            <div class="col-lg-12">
+                <h1>Welcome to
+                    <a href="{{ url_for('main.index') }}">FOOD TRACKER</a>, {{ user_details.name }}!
+                </h1>
+
+                <div class="row t20">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <ul class="nav nav-pills nav-justified">
+                            <li role="presentation" class="active">
+                                <a href="{{ url_for('main.index') }}" title="Home">Home</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
+                            </li>
+                            <li role="login">
+                                <a href="/logout" title="logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="prog_container">
+        <div class="log_form">
+            <form action="">
+                <label for="Date"><h4>Date</h4></label><br>
+                <input class="form__input_crt" type="date" name="date" id=""><br><br>
+                <label for="food_list"><h4>Choose what you had today</h4></label><br>
+                <input class="form__input_crt" list="browsers" name="browser" id="browser">
+                <datalist class="form__input_crt" id="browsers">
+                    {% for food in foods %}
+                    <option value="{{ food.name }}">
+                    {% endfor %}
+                </datalist><br><br>
+                <input class="button_pro" type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="checkout">
+            <h4>Checkout</h4>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="{{ url_for('static', filename='bs/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</body>
+
+</html>

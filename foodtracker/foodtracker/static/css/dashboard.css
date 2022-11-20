@@ -37,7 +37,6 @@ div[role="progressbar"] {
   font-size: calc(var(--size) / 5);
   color: #000000;
   z-index: 100;
-  /* border: 8px solid white; */
 }
 
 div[role="progressbar"]:hover {
@@ -88,7 +87,6 @@ div[role="progressbar"]::before {
   border-bottom: 10px solid #77a5cd;
   border-left: none;
   color: #def;
-  /* border: none; */
   position: relative;
   background-color: #00308F;
 }
@@ -127,7 +125,6 @@ body {
 
 .chartjs {
   width: 50vh;
-  /* margin-top: 20px; */
   border: 1px solid black;
   border-radius: 5px;
 }
@@ -136,10 +133,8 @@ body {
   display: flex;
   justify-content: space-around;
   padding: 10px;
-  /* background-color: #ecf0f3; */
   max-width: max-content;
   position: absolute;
-  /* margin-left: 540px; */
   margin-top: 10px;
   border-radius: 12px;
 }
@@ -155,26 +150,21 @@ th:first-child {
   border-top-left-radius: 10px;
 }
 
-th:last-child {
+th:last-child  {
   border-top-right-radius: 10px;
 }
 
-td {
+.td_add, td{
   border-collapse: collapse;
   border: 1px solid black;
   padding: 8px;
   font-size: 20px;
 }
 
-td:first-child {
+.td_add:first-child, td:first-child {
   border-bottom-left-radius: 10px;
 }
 
-td:last-child {
+.td_add:last-child, td:last-child {
   border-bottom-right-radius: 10px;
 }
-
-/* .det_tab{
-  border: 1px solid black;
-  border-radius: 10px;
-} */
