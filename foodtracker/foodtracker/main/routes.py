@@ -49,18 +49,18 @@ def index():
 
     return render_template('index.html', food_dict=food_dict)
 
-@main.route('/create_log', methods=['POST'])
-def create_log():
-    uid = session["name"]
-    date = request.form.get('date')
+# @main.route('/create_log', methods=['POST'])
+# def create_log():
+#     uid = session["name"]
+#     date = request.form.get('date')
 
-    food_data = Food.query.filter_by(id=uid).all()
-    food_dict = {}
-    for food in food_data:
-        food_dict[food_data.fid] = {"name":food_data.name, "carbs":food_data.carbs, "proteins":food_data.proteins, "fats":food_data.fats, "calories":food_data.calories}
+#     food_data = Food.query.filter_by(id=uid).all()
+#     food_dict = {}
+#     for food in food_data:
+#         food_dict[food_data.fid] = {"name":food_data.name, "carbs":food_data.carbs, "proteins":food_data.proteins, "fats":food_data.fats, "calories":food_data.calories}
         
 
-    return redirect(url_for('main.view', log_id=))
+#     return redirect(url_for('main.view', log_id=))
 
 @main.route('/add',methods=['GET', 'POST'])
 def add():
