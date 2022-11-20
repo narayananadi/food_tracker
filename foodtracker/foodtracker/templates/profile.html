@@ -34,11 +34,11 @@
                                 <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
                             </li>
                             <li role="presentation">
-								<a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
-							</li>
+                                <a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
+                            </li>
                             <li role="presentation">
-								<a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
-							</li>
+                                <a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
+                            </li>
                             <li role="login">
                                 <a href="/logout" title="logout">Logout</a>
                             </li>
@@ -81,22 +81,25 @@
         </table>
     </div>
     <!-- <center> -->
-        <div class="flex">
-            <div class="main_pro">
-                <div class="container_pro" id="a-container">
-                    <h1>My Details</h1><br>
-                    <form  id="res_form" name="res_form" action="/profile" method="post">
-                        <input class="form__input_pro" type="text" placeholder="Weight (in kg)" name="weight" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Height (in m)" name="height"><br>
-                        <input class="form__input_pro" type="text" placeholder="Calories (in gms)" name="calories_limit" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Carbohydrates (in gms)" name="carbs_limit" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Proteins (in gms)" name="proteins_limit" /><br>
-                        <input class="form__input_pro" type="text" placeholder="Fats (in gms)" name="fats_limit" /><br>
-                        <button class="form__button_pro button_pro" type="submit" form="res_form">Submit</button>
-                    </form>
-                </div>
+    <div class="flex">
+        <div class="main_pro">
+            <div class="container_pro" id="a-container">
+                <h1>My Details</h1><br>
+                <form id="res_form" name="res_form" action="/profile" method="post">
+                    <input class="form__input_pro" type="text" placeholder="Weight (in kg)" name="weight" /><br>
+                    <input class="form__input_pro" type="text" placeholder="Height (in m)" name="height"><br>
+                    <input class="form__input_pro" type="text" placeholder="Calories (in gms)"
+                        name="calories_limit" /><br>
+                    <input class="form__input_pro" type="text" placeholder="Carbohydrates (in gms)"
+                        name="carbs_limit" /><br>
+                    <input class="form__input_pro" type="text" placeholder="Proteins (in gms)"
+                        name="proteins_limit" /><br>
+                    <input class="form__input_pro" type="text" placeholder="Fats (in gms)" name="fats_limit" /><br>
+                    <button class="form__button_pro button_pro" type="submit" form="res_form">Submit</button>
+                </form>
             </div>
         </div>
+    </div>
     <!-- </center> -->
 
     <!-- jQuery -->

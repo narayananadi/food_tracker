@@ -307,3 +307,7 @@ def create():
     user_details = {"name":usr_dat[1]}
     foods = Food.query.filter_by(uid=uid).all()    
     return render_template('create_log.html',user_details=user_details,foods=foods)
+
+@main.route('/land', methods=['GET', 'POST'])
+def land():
+        return render_template('land.html')

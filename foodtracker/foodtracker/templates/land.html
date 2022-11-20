@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Food Tracker | Home</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='css/img/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu:400,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bs/css/united.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/land.css') }}" />
+</head>
+
+<body>
+
+    <body>
+        <div class="container-fluid" id="wrapper">
+            <div class="row" id="homeJumbo">
+                <div class="overlay"></div>
+                <div class="col-lg-12">
+                    <h1>
+                        <a href="{{ url_for('main.index') }}">CALORIE TRACKER</a>
+                    </h1>
+
+                    <div class="row t20">
+                        <div class="col-lg-4 col-lg-offset-4">
+                            <ul class="nav nav-pills nav-justified">
+                                <li role="presentation" class="active">
+                                    <a href="{{ url_for('main.index') }}" title="Home">Home</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#weight" title="Add Food Item">BMI</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="{{ url_for('main.user_profile') }}" title="Profile">Register</a>
+                                </li>
+                                <li role="login">
+                                    <a href="{{ url_for('main.login') }}" title="login">Login</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cont">
+
+            <div class="ovrly">
+                <div class="ovrly-right">
+
+                </div>
+            </div>
+            <h1>Welcome to a healthy lifestyle</h1><br>
+            <p>Calorie Tracker is where health conscious mind gets relief because here you can easily track your daily
+                calorie intake. <br>
+                It is a good habit to be vary of your health and hence, this is where we come in. Please do register
+                yourself by <br> clicking "Register" above and proceed to create your daily logs of consumption</p>
+        </div>
+        <div class="prog_container">
+            <h1>Track your BMI here</h1>
+            <div class="bmi_lan">
+                <input placeholder="Weight" class="form__input_lan" type="number" name="weight" id="weight">
+                <label for="division">÷</label>
+                <input placeholder="Height" class="form__input_lan" type="number" name="height" id="height">
+                <label for="square"><sup>2</sup></label>     
+                <button onclick="bmicheck()" type="submit" value="">=</button>     
+                <label id="res" for="answer">?</label>
+            </div>
+        </div>
+
+
+        <!-- Scripts -->
+        <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    </body>
