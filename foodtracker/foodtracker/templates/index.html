@@ -24,10 +24,13 @@
 <body>
 	<div class="container-fluid" id="wrapper">
 		<div class="bmi">
-			<h4>BMI Calculator</h4>
-			<input type="number" id="weight" placeholder="Weight (in kg)">
-			<input type="number" id="height" placeholder="Height (in m)"><br><br>
-			<button onclick="depression()">Calculate BMI</button>
+			<h4>food list</h4>
+			<label for="food">choose a food</label>
+			<select name="food" id="food">
+			{% for food in food_data %}
+  			<option value="{{food.fid}}" onclick="add_to_checkout('{{food.fid}}', '{{ food.name }}')">{{ food.name }}</option>
+			{% endfor %}
+			</select>
 			<span id="res"></span>
 		</div>
 		<div class="row" id="homeJumbo">
@@ -53,11 +56,7 @@
 								<a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
 							</li>
 							<li role="login">
-								{% if login_dict["isLogged"] %}
 								<a href="/logout" title="logout">Logout</a>
-								{% else %}
-								<a href="/login" title="login">Login</a>
-								{% endif %}
 							</li>
 						</ul>
 					</div>
@@ -124,7 +123,13 @@
 			{% endfor %}
 		</div>
 		{% endfor %}
-
+	<div>
+		<h3>CHECKOUT</h3>
+		<form id="create_fields"  name="create_fields" method="post">
+			<div id="insert_fields"></div>
+			<button type="submit" form="create_fields"> CHECKOUT</button>
+		</form>  
+	</div>	
 		<footer>
 			<div class="row pad">
 				<div class="col-lg-12 text-center">

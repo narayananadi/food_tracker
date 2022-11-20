@@ -30,10 +30,10 @@ def index():
      "fats": usr_dat[11]
 
     }
-    food_data = Food.query.filter_by(id=uid).all()
+    food_data = Food.query.filter_by(uid=uid).all()
     food_dict = {}
     for food in food_data:
-        food_dict[food_data.fid] = {"name":food_data.name, "carbs":food_data.carbs, "proteins":food_data.proteins, "fats":food_data.fats, "calories":food_data.calories}
+        food_dict[food.fid] = {"name":food.name, "carbs":food.carbs, "proteins":food.proteins, "fats":food.fats, "calories":food.calories}
         
 
     logs = Log.query.filter_by(uid=uid).all()
@@ -47,20 +47,20 @@ def index():
         dict_date[log.pub_date].append({"name":food.name, "carbs":food.carbs, "proteins":food.proteins, "fats":food.fats, "calories":food.calories})
 
 
-    return render_template('index.html', food_dict=food_dict)
+    return render_template('index.html', food_dict=food_dict, user_details=user_details,food_data=food_data)
 
-# @main.route('/create_log', methods=['POST'])
-# def create_log():
-#     uid = session["name"]
-#     date = request.form.get('date')
+@main.route('/create_log', methods=['POST'])
+def create_log():
+    uid = session["name"]
+    date = request.form.get('date')
 
-#     food_data = Food.query.filter_by(id=uid).all()
-#     food_dict = {}
-#     for food in food_data:
-#         food_dict[food_data.fid] = {"name":food_data.name, "carbs":food_data.carbs, "proteins":food_data.proteins, "fats":food_data.fats, "calories":food_data.calories}
+    food_data = Food.query.filter_by(id=uid).all()
+    food_dict = {}
+    for food in food_data:
+        food_dict[food_data.fid] = {"name":food_data.name, "carbs":food_data.carbs, "proteins":food_data.proteins, "fats":food_data.fats, "calories":food_data.calories}
         
 
-#     return redirect(url_for('main.view', log_id=))
+    return redirect(url_for('main.view'))
 
 @main.route('/add',methods=['GET', 'POST'])
 def add():
