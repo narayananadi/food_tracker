@@ -14,49 +14,53 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    login_dict={
-        "isLogged":False
-    }
     if "name" not in session.keys():
         return redirect(url_for('main.login'))
-
+    login_dict={}
     login_dict['isLogged']=True
-    logs = Log.query.order_by(Log.pub_date.desc()).all()
+    uid = session["name"]
+    usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
+    user_details = {"email":usr_dat[3], 
+     "name":usr_dat[1], 
+     "height":usr_dat[4],
+     "weight":usr_dat[5], 
+     "calories":usr_dat[8],
+     "carbs":usr_dat[9], 
+     "proteins":usr_dat[10],
+     "fats": usr_dat[11]
 
-    log_dates = []
+    }
+    food_data = Food.query.filter_by(id=uid).all()
+    food_dict = {}
+    for food in food_data:
+        food_dict[food_data.fid] = {"name":food_data.name, "carbs":food_data.carbs, "proteins":food_data.proteins, "fats":food_data.fats, "calories":food_data.calories}
+        
 
+    logs = Log.query.filter_by(uid=uid).all()
+    dict_food = {}
+    dict_date = {}
     for log in logs:
-        proteins = 0
-        carbs = 0
-        fats = 0
-        calories = 0
+        if log.pub_date not in dict_date.keys():
+            dict_date[log.pub_date] = []
+        food = Food.query.filter_by(fid=log.fid).first()
+        dict_food[log.fid] = {"name":food.name, "carbs":food.carbs, "proteins":food.proteins, "fats":food.fats, "calories":food.calories}
+        dict_date[log.pub_date].append({"name":food.name, "carbs":food.carbs, "proteins":food.proteins, "fats":food.fats, "calories":food.calories})
 
-        for food in log.foods:
-            proteins += food.proteins
-            carbs += food.carbs 
-            fats += food.fats
-            calories += food.calories
 
-        log_dates.append({
-            'log_date' : log,
-            'proteins' : proteins,
-            'carbs' : carbs,
-            'fats' : fats,
-            'calories' : calories
-        })
+    return render_template('index.html', food_dict=food_dict)
 
-    return render_template('index.html', log_dates=log_dates,login_dict=login_dict)
+# @main.route('/create_log', methods=['POST'])
+# def create_log():
+#     uid = session["name"]
+#     date = request.form.get('date')
 
-@main.route('/create_log', methods=['POST'])
-def create_log():
-    if "date" in request.form.keys():
-        date = request.form.get('date')
-        log = Log(date=datetime.strptime(date, '%Y-%m-%d'))
+#     food_data = Food.query.filter_by(id=uid).all()
+#     food_dict = {}
+#     for food in food_data:
+#         food_dict[food_data.fid] = {"name":food_data.name, "carbs":food_data.carbs, "proteins":food_data.proteins, "fats":food_data.fats, "calories":food_data.calories}
+        
 
-    db.session.add(log)
-    db.session.commit()
-  
-    return redirect(url_for('main.view', log_id=log.id))
+#     return redirect(url_for('main.view', log_id=))
 
 @main.route('/add',methods=['GET', 'POST'])
 def add():
@@ -269,6 +273,8 @@ def user_profile():
 def logout():
     session.clear()
     return redirect(url_for('main.login'))
+
+
 
 @main.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():

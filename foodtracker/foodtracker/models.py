@@ -3,7 +3,7 @@ from .extensions import db
 
 class Log(db.Model):
     lid = db.Column(db.String(50), primary_key=True)
-    pub_date = db.Column(db.DateTime, nullable=False)
+    pub_date = db.Column(db.Date, nullable=False)
     fid = db.Column(db.String(50), nullable=False)
     count = db.Column(db.Integer, nullable=False)
     uid = db.Column(db.String(50), nullable=False)
