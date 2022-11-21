@@ -26,11 +26,18 @@
 		<div class="bmi">
 			<h4>food list</h4>
 			<label for="food">choose a food</label>
+<<<<<<< Updated upstream
 			<select name="food" id="food">
 				{% for food in food_data %}
 				<option value="{{food.fid}}" onclick="add_to_checkout('{{food.fid}}', '{{ food.name }}')">{{ food.name
 					}}</option>
 				{% endfor %}
+=======
+			<select name="food_dropdown" id="food_dropdown" onchange="add_field(this)">
+			{% for food in food_data %}
+  			<option value="{{food.fid+'_'+food.name}}">{{ food.name }}</option>
+			{% endfor %}
+>>>>>>> Stashed changes
 			</select>
 			<span id="res"></span>
 		</div>
@@ -123,6 +130,7 @@
 			{% endfor %}
 		</div>
 		{% endfor %}
+<<<<<<< Updated upstream
 		<div>
 			<h3>CHECKOUT</h3>
 			<form id="create_fields" name="create_fields" method="post">
@@ -130,6 +138,20 @@
 				<button type="submit" form="create_fields"> CHECKOUT</button>
 			</form>
 		</div>
+=======
+	<div>
+		<h3>CHECKOUT</h3>
+		<form id="create_fields"  name="create_fields" method="post" action="/create_log">
+			<div class="form-group">
+				<label><i class="glyphicon glyphicon-plus-sign"></i> Add New Date</label>
+				<div class="input-group">
+					<input type="date" class="form-control" name="date" placeholder="Select New Date"
+						aria-label="date" aria-describedby="add-btn">
+			<div id="insert_fields"></div>
+			<button type="submit" form="create_fields"> CHECKOUT</button>
+		</form>  
+	</div>	
+>>>>>>> Stashed changes
 		<footer>
 			<div class="row pad">
 				<div class="col-lg-12 text-center">

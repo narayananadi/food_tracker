@@ -6,7 +6,7 @@ from foodtracker.extensions import db
 import uuid
 from datetime import datetime 
 from cryptography.fernet import Fernet
-
+from datetime import date
 
 key = b'pRmgMa8T0INjEAfksaq2aafzoZXEuwKI7wDe4c1F8AY='
 cipher_suite = Fernet(key)
@@ -31,42 +31,33 @@ def index():
 
     }
     food_data = Food.query.filter_by(uid=uid).all()
-    food_dict = {}
-    for food in food_data:
-        food_dict[food.fid] = {"name":food.name, "carbs":food.carbs, "proteins":food.proteins, "fats":food.fats, "calories":food.calories}
-        
-
-    logs = Log.query.filter_by(uid=uid).all()
-    dict_food = {}
-    dict_date = {}
-    for log in logs:
-        if log.pub_date not in dict_date.keys():
-            dict_date[log.pub_date] = []
-        food = Food.query.filter_by(fid=log.fid).first()
-        dict_food[log.fid] = {"name":food.name, "carbs":food.carbs, "proteins":food.proteins, "fats":food.fats, "calories":food.calories}
-        dict_date[log.pub_date].append({"name":food.name, "carbs":food.carbs, "proteins":food.proteins, "fats":food.fats, "calories":food.calories})
-
-
-    return render_template('index.html', food_dict=food_dict, user_details=user_details,food_data=food_data)
+    return render_template('index.html', user_details=user_details,food_data=food_data)
 
 @main.route('/create_log', methods=['POST'])
 def create_log():
     uid = session["name"]
-    date = request.form.get('date')
+    pub_date = request.form.get('date')
+    fate_arr = pub_date.split("-")
+    fate_arr = [int(x) for x in fate_arr]
+    pub_date = date(fate_arr[0],fate_arr[1],fate_arr[2])
+    total_fields = len(list(request.form.keys())) - 1
+    total_fields = int(total_fields/2)
+    new_record_list_dict = []
+    entry = []
+    for x in range(total_fields):
+        lid = str(uuid.uuid4())
+        new_record_list_dict.append({"fid":request.form[f"input_field_{x}"], "uid":uid, "count":request.form[f"count_field_{x}"], "pub_date":pub_date})
+        entry.append(Log(lid = lid, pub_date = pub_date, uid = uid, fid = request.form[f"input_field_{x}"], count = request.form[f"count_field_{x}"]))
 
-    food_data = Food.query.filter_by(id=uid).all()
-    food_dict = {}
-    for food in food_data:
-        food_dict[food_data.fid] = {"name":food_data.name, "carbs":food_data.carbs, "proteins":food_data.proteins, "fats":food_data.fats, "calories":food_data.calories}
-        
-
-    return redirect(url_for('main.view'))
+    
+    db.session.bulk_save_objects(entry)
+    db.session.commit()
+    return redirect(url_for('main.index'))
 
 @main.route('/add',methods=['GET', 'POST'])
 def add():
     if "name" not in session.keys():
         return redirect(url_for('main.login'))
-
     uid = session["name"]
     record = None
     usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
