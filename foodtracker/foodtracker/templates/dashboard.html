@@ -124,6 +124,25 @@
                 </tr>
             </table>
         </div>
+<br><br><br>
+        <div class="prog_container">
+            <table class="det_tab">
+                <tr>
+                    <th>Date</th>
+                    <th>food id</th>
+                    <th>count</th>
+                    <th>user id</th>
+                </tr>
+                {% for data in log_data %}
+                <tr>
+                    <td>{{ data.pub_date }}</td>
+                    <td>{{ data.fid }}</td>
+                    <td>{{ data.count }}</td>
+                    <td>{{ data.uid }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </center>
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
@@ -146,14 +165,14 @@
         const prot = document.getElementById('prot').getContext('2d');
         const cbhs = document.getElementById('cbhs').getContext('2d');
         Chart.defaults.color = "#000000";
-
+        var chart_data = JSON.parse({{ date_wise_data | tojson }})
         new Chart(cal, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July'],
+                labels: chart_data["proteins"]["date"],
                 datasets: [{
-                    data: [86,114,106,106,107,111,133],
-                    label: "Total",
+                    data: chart_data["proteins"]["value"],
+                    label: "proteins",
                     borderColor: "#3e95cd",
                     backgroundColor: "#7bb6dd",
                     fill: false,
@@ -164,10 +183,10 @@
         new Chart(fts, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July'],
+                labels: chart_data["fats"]["date"],
                 datasets: [{
-                    data: [70,90,44,60,83,90,100],
-                    label: "Accepted",
+                    data: chart_data["fats"]["value"],
+                    label: "fats",
                     borderColor: "#3cba9f",
                     backgroundColor: "#71d1bd",
                     fill: false,
@@ -178,10 +197,10 @@
         new Chart(prot, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July'],
+                labels:chart_data["carbs"]["date"],
                 datasets: [{
-                    data: [6,3,2,2,7,0,16],
-                    label: "Rejected",
+                    data: chart_data["carbs"]["value"],
+                    label: "carbs",
                     borderColor: "#c45850",
                     backgroundColor:"#d78f89",
                     fill: false
@@ -192,10 +211,10 @@
         new Chart(cbhs, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June'],
+                labels: chart_data["calories"]["date"],
                 datasets: [{
-                    data: [10,21,60,44,17,21,17],
-                    label: "Pending",
+                    data: chart_data["calories"]["value"],
+                    label: "calories",
                     borderColor: "#ffa500",
                     backgroundColor:"#ffc04d",
                     fill: false,

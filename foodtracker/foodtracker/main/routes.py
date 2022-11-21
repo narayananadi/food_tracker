@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, json
 from flask_session import Session
 import sqlite3
 from foodtracker.models import Food, UserData, Log
@@ -7,10 +7,21 @@ import uuid
 from datetime import datetime 
 from cryptography.fernet import Fernet
 from datetime import date
+import os
+from datetime import date, timedelta
+from random import randint
 
 key = b'pRmgMa8T0INjEAfksaq2aafzoZXEuwKI7wDe4c1F8AY='
 cipher_suite = Fernet(key)
 main = Blueprint('main', __name__)
+
+def daterange(start_date, end_date):
+    for n in range(int((end_date - start_date).days)):
+        yield start_date + timedelta(n)
+
+# def calculate_total(log_data, index):
+
+
 
 @main.route('/')
 def index():
@@ -110,30 +121,6 @@ def view(log_id):
         totals['calories'] += food.calories
 
     return render_template('view.html', foods=foods, log=log, totals=totals)
-
-@main.route('/add_food_to_log/<int:log_id>', methods=['POST'])
-def add_food_to_log(log_id):
-    log = Log.query.get_or_404(log_id)
-
-    selected_food = request.form.get('food-select')
-
-    food = Food.query.get(int(selected_food))
-
-    log.foods.append(food)
-    db.session.commit()
-
-    return redirect(url_for('main.view', log_id=log_id))
-
-@main.route('/remove_food_from_log/<int:log_id>/<int:food_id>')
-def remove_food_from_log(log_id, food_id):
-    log = Log.query.get(log_id)
-    food = Food.query.get(food_id)
-
-    log.foods.remove(food)
-    db.session.commit()
-
-    return redirect(url_for('main.view', log_id=log_id))
-
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
@@ -284,8 +271,66 @@ def dashboard():
      "proteins":usr_dat[10],
      "fats": usr_dat[11]
     }
+    list_of_foods = []
+    log_data = Log.query.filter_by(uid=uid).all()
+    for x in log_data:
+        list_of_foods.append(x.fid)
 
-    return render_template('dashboard.html', user_details=user_details)
+    today = date.today()
+    food_data = Food.query.filter(Food.uid.like(uid),Food.fid.in_(list_of_foods)).all()
+    start_date = os.environ['START_DATE']
+    start_date = start_date.split("-")
+    start_date = [int(x) for x in start_date]
+    start_date = date(start_date[0],start_date[1],start_date[2])
+    end_date = today
+    log_date_list = []
+    for data in log_data:
+        log_date_list.append(str(data.pub_date))
+    
+    date_wise_data = {
+    "proteins":{"date":[], "value":[]},
+    "fats":{"date":[], "value":[]},
+    "calories":{"date":[], "value":[]},
+    "carbs":{"date":[], "value":[]}
+    }
+
+    for single_date in daterange(start_date, end_date):
+        single_date = str(single_date)
+        print(len(single_date), type(single_date))
+        print(len(log_date_list[0]), type(log_date_list[0]))
+        if single_date in log_date_list:
+            index = log_date_list.index(single_date)
+            # proteins, carbs, fats, calories = calculate_total(log_data, index)
+            proteins = randint(10,50)
+            fats = randint(10,50)
+            calories = randint(10,50)
+            carbs = randint(10,50)
+            date_wise_data["proteins"]["date"].append(str(log_data[index].pub_date))
+            date_wise_data["proteins"]["value"].append(proteins)
+            date_wise_data["fats"]["date"].append(str(log_data[index].pub_date))
+            date_wise_data["fats"]["value"].append(fats)
+            date_wise_data["carbs"]["date"].append(str(log_data[index].pub_date))
+            date_wise_data["carbs"]["value"].append(carbs)
+            date_wise_data["calories"]["date"].append(str(log_data[index].pub_date))
+            date_wise_data["calories"]["value"].append(calories)
+            # date_wise_data[log_data[index].pub_date] = {"proteins":100, "carbs":100, "fats":100, "calories":300}
+        else:
+            proteins = randint(10,50)
+            fats = randint(10,50)
+            calories = randint(10,50)
+            carbs = randint(10,50)
+            date_wise_data["proteins"]["date"].append(single_date)
+            date_wise_data["proteins"]["value"].append(proteins)
+            date_wise_data["fats"]["date"].append(single_date)
+            date_wise_data["fats"]["value"].append(fats)
+            date_wise_data["carbs"]["date"].append(single_date)
+            date_wise_data["carbs"]["value"].append(carbs)
+            date_wise_data["calories"]["date"].append(single_date)
+            date_wise_data["calories"]["value"].append(calories)
+
+    date_wise_data = json.dumps(date_wise_data)
+
+    return render_template('dashboard.html', user_details=user_details, food_data = food_data, log_data = log_data,  today = today, date_wise_data=date_wise_data)
 
 @main.route('/create', methods=['GET', 'POST'])
 def create():
