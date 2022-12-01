@@ -115,9 +115,12 @@ div[role="progressbar"]::before {
 }
 
 .bar_pro {
-  margin-right: 30px;
+  margin-right: 80px;
 }
-
+.small {
+  margin-right: 50px;
+  max-width: fit-content;
+}
 /* End circular progress bar  */
 body {
   background-color: #ebe4d9;

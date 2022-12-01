@@ -58,26 +58,54 @@
     <center>
         <div class="prog_container">
             <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
-                style="--value:30">
+                style="--value: {{ ((current_total_progress['calories'] / user_details['calories'])*100)|int }}">
                 <span class="nutr">Calorie</span>
             </div>
             <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
-                style="--value:50">
+                style="--value:  {{ ((current_total_progress['fats'] / user_details['fats'])*100)|int }}">
                 <span class="nutr">Fats</span>
+                 
             </div>
             <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
-                style="--value:70">
+                style="--value: {{ ((current_total_progress['proteins'] / user_details['proteins'])*100)|int }}">
                 <span class="nutr">Protein</span>
+                
             </div>
             <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
-                style="--value:30">
-                <span class="nutr">Carbs</span>
+                style="--value: {{ ((current_total_progress['carbs'] / user_details['carbs'])*100)|int }}">
+                <span class="nutr">Carbs</span>  
             </div>
+            <br><br>
         </div>
+        <small class="small">{{current_total_progress['calories']}}gms consumed out of {{user_details['calories']}}gms</small>  
+        <small class="small">{{current_total_progress['fats']}}gms consumed out of {{user_details['fats']}}gms</small> 
+        <small class="small">{{current_total_progress['proteins']}}gms consumed out of {{user_details['proteins']}}gms</small> 
+        <small class="small">{{current_total_progress['carbs']}}gms consumed out of {{user_details['carbs']}}gms</small>   
         <div class="prog_container">
-            <button>Add Food</button>
-            <button>Add log</button>
+            <button type="button" ><a href="{{ url_for('main.add') }}">Add New Food Macros</a></button>
+            <button type="button" ><a href="{{ url_for('main.create') }}">Add Logs</a></button>
         </div>
+        <h3>Todays list</h3>
+        <table>
+            <tr>
+            <th>Food Name</th>
+            <th>Proteins</th>
+            <th>Carbohydrates</th>
+            <th>Fats</th>
+            <th>Calories</th>
+            <th>Count</th>
+            </tr>
+            {% for data in food_list %}
+            <tr>
+                <td>{{ data["food_name"]}}</td>
+                <td>{{ data["proteins"]}}</td>
+                <td>{{ data["carbs"]}}</td>
+                <td>{{ data["fats"]}}</td>
+                <td>{{ data["calories"]}}</td>
+                <td>{{ data["count"]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
         <div class="prog_container">
             <div class="prog">
                 <div class="chartjs">
@@ -148,14 +176,14 @@
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
     <!-- Bootstrap JavaScript -->
     <script src="{{ url_for('static', filename='bs/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/create.js') }}"></script> -->
     <!-- chartjs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js"
     integrity="sha512-tQYZBKe34uzoeOjY9jr3MX7R/mo7n25vnqbnrkskGr4D6YOoPYSpyafUAzQVjV6xAozAqUFIEFsCO4z8mnVBXA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/profile.js') }}"></script> -->
     <!-- chart scripting starts here
          cal-calorie, fts- fats, prot- protein, cbhs carbohydrates -->
 

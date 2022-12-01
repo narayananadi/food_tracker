@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../static/css/dashboard.css"> -->
 </head>
 
-<body onload="depression()">
+<body>
     <div class="container-fluid" id="wrapper">
         <div class="row" id="homeJumbo">
             <div class="overlay"></div>
@@ -55,31 +55,40 @@
             </div>
         </div>
     </div>
+    <form id="create_fields" name="create_fields" method="post" action="/create_log">
     <div class="prog_container">
         <div class="log_form">
-            <form action="">
-                <label for="Date"><h4>Date</h4></label><br>
-                <input class="form__input_crt" type="date" name="date" id=""><br><br>
-                <label for="food_list"><h4>Choose what you had today</h4></label><br>
-                <input class="form__input_crt" list="browsers" name="browser" id="browser">
-                <datalist class="form__input_crt" id="browsers">
-                    {% for food in foods %}
-                    <option value="{{ food.name }}">
+                <label for="Date">
+                    <h4>Date</h4>
+                </label><br>
+                <input class="form__input_crt" type="date" name="date" id="" required><br><br>
+                <label for="food_list">
+                    <h4>Choose what you had today</h4>
+                </label><br>
+                <h4>food list</h4>
+                <label for="food">choose a food</label>
+                <select id="food_dropdown" onchange="add_field(this)">
+                    {% for food in food_data %}
+                    <option value="{{food.fid+'_'+food.name}}">{{ food.name }}</option>
                     {% endfor %}
-                </datalist><br><br>
-                <input class="button_pro" type="submit" value="Submit">
-            </form>
+                </select>
+                <br><br>
+                <span id="warning"></span>
         </div>
         <div class="checkout">
             <h4>Checkout</h4>
+            <div id="insert_fields"></div>
+            <button class="button_pro" type="submit" form="create_fields">Submit</button>
         </div>
+    </form>
+
     </div>
 
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
     <!-- Bootstrap JavaScript -->
     <script src="{{ url_for('static', filename='bs/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/create.js') }}"></script>
 </body>
 
 </html>
