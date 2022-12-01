@@ -57,120 +57,152 @@
     </div>
     <center>
         <div class="prog_container">
+            {% if user_details['calories'] !=0 %}
             <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
                 style="--value: {{ ((current_total_progress['calories'] / user_details['calories'])*100)|int }}">
-                <span class="nutr">Calorie</span>
-            </div>
-            <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
-                style="--value:  {{ ((current_total_progress['fats'] / user_details['fats'])*100)|int }}">
-                <span class="nutr">Fats</span>
-                 
-            </div>
-            <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
-                style="--value: {{ ((current_total_progress['proteins'] / user_details['proteins'])*100)|int }}">
-                <span class="nutr">Protein</span>
-                
-            </div>
-            <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
-                style="--value: {{ ((current_total_progress['carbs'] / user_details['carbs'])*100)|int }}">
-                <span class="nutr">Carbs</span>  
-            </div>
-            <br><br>
-        </div>
-        <small class="small">{{current_total_progress['calories']}}gms consumed out of {{user_details['calories']}}gms</small>  
-        <small class="small">{{current_total_progress['fats']}}gms consumed out of {{user_details['fats']}}gms</small> 
-        <small class="small">{{current_total_progress['proteins']}}gms consumed out of {{user_details['proteins']}}gms</small> 
-        <small class="small">{{current_total_progress['carbs']}}gms consumed out of {{user_details['carbs']}}gms</small>   
-        <div class="prog_container">
-            <button type="button" ><a href="{{ url_for('main.add') }}">Add New Food Macros</a></button>
-            <button type="button" ><a href="{{ url_for('main.create') }}">Add Logs</a></button>
-        </div>
-        <h3>Todays list</h3>
-        <table>
-            <tr>
-            <th>Food Name</th>
-            <th>Proteins</th>
-            <th>Carbohydrates</th>
-            <th>Fats</th>
-            <th>Calories</th>
-            <th>Count</th>
-            </tr>
-            {% for data in food_list %}
-            <tr>
-                <td>{{ data["food_name"]}}</td>
-                <td>{{ data["proteins"]}}</td>
-                <td>{{ data["carbs"]}}</td>
-                <td>{{ data["fats"]}}</td>
-                <td>{{ data["calories"]}}</td>
-                <td>{{ data["count"]}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <div class="prog_container">
-            <div class="prog">
-                <div class="chartjs">
-                    <canvas class="chdata" id="cal"></canvas>
+                {% else %}
+                <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                    style="--value:0">
+                    {% endif %}
+                    <span class="nutr">Calories <p>{{current_total_progress['calories']}}gms /
+                        {{user_details['calories']}}gms</p></span>
                 </div>
-            </div>
-            <div class="prog">
-                <div class="chartjs">
-                    <canvas class="chdata" id="fts"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="prog_container">
-            <div class="prog">
-                <div class="chartjs">
-                    <canvas class="chdata" id="prot"></canvas>
-                </div>
-            </div>
-            <div class="prog">
-                <div class="chartjs">
-                    <canvas class="chdata" id="cbhs"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="prog_container">
-            <table class="det_tab">
-                <tr>
-                    <th>Weight</th>
-                    <th>Height</th>
-                    <th>Calories</th>
-                    <th>Carbohydrates</th>
-                    <th>Proteins</th>
-                    <th>Fats</th>
-                    <th>BMI</th>
-                </tr>
-                <tr>
-                    <td id="weight">{{ user_details.height }}</td>
-                    <td id="height">{{ user_details.weight }}</td>
-                    <td>{{ user_details.calories }}</td>
-                    <td>{{ user_details.carbs }}</td>
-                    <td>{{ user_details.proteins }}</td>
-                    <td>{{ user_details.fats }}</td>
-                    <td id="res"></td>
-                </tr>
-            </table>
-        </div>
-<br><br><br>
-        <div class="prog_container">
-            <table class="det_tab">
-                <tr>
-                    <th>Date</th>
-                    <th>food id</th>
-                    <th>count</th>
-                    <th>user id</th>
-                </tr>
-                {% for data in log_data %}
-                <tr>
-                    <td>{{ data.pub_date }}</td>
-                    <td>{{ data.fid }}</td>
-                    <td>{{ data.count }}</td>
-                    <td>{{ data.uid }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
+
+                {% if user_details['fats'] !=0 %}
+                <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                    style="--value: {{ ((current_total_progress['fats'] / user_details['fats'])*100)|int }}">
+                    {% else %}
+                    <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                        style="--value:0">
+                        {% endif %}
+                        <span class="nutr">Fats<p>{{current_total_progress['fats']}}gms /
+                            {{user_details['fats']}}gms</p></span>
+                    </div>
+
+                    {% if user_details['proteins'] !=0 %}
+                    <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                        style="--value: {{ ((current_total_progress['proteins'] / user_details['proteins'])*100)|int }}">
+                        {% else %}
+                        <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:0">
+                            {% endif %}
+                            <span class="nutr">Proteins<p>{{current_total_progress['protiens']}}gms /
+                                {{user_details['proteins']}}gms</p></span>
+                        </div>
+
+                        {% if user_details['carbs'] !=0 %}
+                        <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                            style="--value: {{ ((current_total_progress['carbs'] / user_details['carbs'])*100)|int }}">
+                            {% else %}
+                            <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                aria-valuemax="100" style="--value:0">
+                                {% endif %}
+                                <span class="nutr">Carbs<p>{{current_total_progress['carbs']}}gms /
+                                    {{user_details['carbs']}}gms</p></span>
+                            </div>
+
+                            <br><br>
+                        </div>
+                        <!-- <div class="prog_container">
+                            <small class="small">{{current_total_progress['calories']}}gms consumed out of
+                                {{user_details['calories']}}gms</small>
+                            <small class="small">{{current_total_progress['fats']}}gms consumed out of
+                                {{user_details['fats']}}gms</small>
+                            <small class="small">{{current_total_progress['proteins']}}gms consumed out of
+                                {{user_details['proteins']}}gms</small>
+                            <small class="small">{{current_total_progress['carbs']}}gms consumed out of
+                                {{user_details['carbs']}}gms</small>
+                        </div> -->
+                        <div class="prog_container">
+                            <button type="button"><a href="{{ url_for('main.add') }}">Add New Food Macros</a></button>
+                            <button type="button"><a href="{{ url_for('main.create') }}">Add Logs</a></button>
+                        </div>
+                        <h3>Todays list</h3>
+                        <table>
+                            <tr>
+                                <th>Food Name</th>
+                                <th>Proteins</th>
+                                <th>Carbohydrates</th>
+                                <th>Fats</th>
+                                <th>Calories</th>
+                                <th>Count</th>
+                            </tr>
+                            {% for data in food_list %}
+                            <tr>
+                                <td>{{ data["food_name"]}}</td>
+                                <td>{{ data["proteins"]}}</td>
+                                <td>{{ data["carbs"]}}</td>
+                                <td>{{ data["fats"]}}</td>
+                                <td>{{ data["calories"]}}</td>
+                                <td>{{ data["count"]}}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        <div class="prog_container">
+                            <div class="prog">
+                                <div class="chartjs">
+                                    <canvas class="chdata" id="cal"></canvas>
+                                </div>
+                            </div>
+                            <div class="prog">
+                                <div class="chartjs">
+                                    <canvas class="chdata" id="fts"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prog_container">
+                            <div class="prog">
+                                <div class="chartjs">
+                                    <canvas class="chdata" id="prot"></canvas>
+                                </div>
+                            </div>
+                            <div class="prog">
+                                <div class="chartjs">
+                                    <canvas class="chdata" id="cbhs"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prog_container">
+                            <table class="det_tab">
+                                <tr>
+                                    <th>Weight</th>
+                                    <th>Height</th>
+                                    <th>Calories</th>
+                                    <th>Carbohydrates</th>
+                                    <th>Proteins</th>
+                                    <th>Fats</th>
+                                    <th>BMI</th>
+                                </tr>
+                                <tr>
+                                    <td id="weight">{{ user_details.height }}</td>
+                                    <td id="height">{{ user_details.weight }}</td>
+                                    <td>{{ user_details.calories }}</td>
+                                    <td>{{ user_details.carbs }}</td>
+                                    <td>{{ user_details.proteins }}</td>
+                                    <td>{{ user_details.fats }}</td>
+                                    <td id="res"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br><br><br>
+                        <div class="prog_container">
+                            <table class="det_tab">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>food id</th>
+                                    <th>count</th>
+                                    <th>user id</th>
+                                </tr>
+                                {% for data in log_data %}
+                                <tr>
+                                    <td>{{ data.pub_date }}</td>
+                                    <td>{{ data.fid }}</td>
+                                    <td>{{ data.count }}</td>
+                                    <td>{{ data.uid }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
     </center>
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
@@ -181,8 +213,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js"
-    integrity="sha512-tQYZBKe34uzoeOjY9jr3MX7R/mo7n25vnqbnrkskGr4D6YOoPYSpyafUAzQVjV6xAozAqUFIEFsCO4z8mnVBXA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        integrity="sha512-tQYZBKe34uzoeOjY9jr3MX7R/mo7n25vnqbnrkskGr4D6YOoPYSpyafUAzQVjV6xAozAqUFIEFsCO4z8mnVBXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <script src="{{ url_for('static', filename='js/profile.js') }}"></script> -->
     <!-- chart scripting starts here
          cal-calorie, fts- fats, prot- protein, cbhs carbohydrates -->
@@ -225,12 +257,12 @@
         new Chart(prot, {
             type: 'line',
             data: {
-                labels:chart_data["carbs"]["date"],
+                labels: chart_data["carbs"]["date"],
                 datasets: [{
                     data: chart_data["carbs"]["value"],
                     label: "carbs",
                     borderColor: "#c45850",
-                    backgroundColor:"#d78f89",
+                    backgroundColor: "#d78f89",
                     fill: false
                 }]
             }
@@ -244,7 +276,7 @@
                     data: chart_data["calories"]["value"],
                     label: "calories",
                     borderColor: "#ffa500",
-                    backgroundColor:"#ffc04d",
+                    backgroundColor: "#ffc04d",
                     fill: false,
                 }]
             }

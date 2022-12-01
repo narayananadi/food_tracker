@@ -70,6 +70,10 @@ div[role="progressbar"]::before {
   font-weight: 600;
 }
 
+.nutr>p{
+  font-size: 10px;
+}
+
 .prog_container {
   display: flex;
   justify-content: center;
@@ -118,8 +122,8 @@ div[role="progressbar"]::before {
   margin-right: 80px;
 }
 .small {
-  margin-right: 50px;
-  max-width: fit-content;
+  /* margin-right: 50px; */
+  /* max-width: fit-content; */
 }
 /* End circular progress bar  */
 body {
