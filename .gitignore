@@ -3,4 +3,4 @@
 *.ipynb
 flask_session/
 __pycache__/
-*db.sqlite3
+
