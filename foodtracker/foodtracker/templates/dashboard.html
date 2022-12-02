@@ -9,7 +9,6 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='css/img/favicon.ico') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu:400,700" rel="stylesheet">
-
     <!-- Bootstrap CSS -->
     <!-- jinja -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bs/css/united.min.css') }}" />
@@ -56,6 +55,7 @@
         </div>
     </div>
     <center>
+        <div class="pos">
         <div class="prog_container">
             {% if user_details['calories'] !=0 %}
             <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
@@ -103,6 +103,7 @@
 
                             <br><br>
                         </div>
+                        </div>
                         <!-- <div class="prog_container">
                             <small class="small">{{current_total_progress['calories']}}gms consumed out of
                                 {{user_details['calories']}}gms</small>
@@ -114,10 +115,10 @@
                                 {{user_details['carbs']}}gms</small>
                         </div> -->
                         <div class="prog_container">
-                            <button type="button"><a href="{{ url_for('main.add') }}">Add New Food Macros</a></button>
+                            <!-- <button type="button"><a href="{{ url_for('main.add') }}">Add Food Items</a></button> -->
                             <button type="button"><a href="{{ url_for('main.create') }}">Add Logs</a></button>
                         </div>
-                        <h3>Todays list</h3>
+                        <!-- <h3>Todays list</h3>
                         <table>
                             <tr>
                                 <th>Food Name</th>
@@ -137,7 +138,13 @@
                                 <td>{{ data["count"]}}</td>
                             </tr>
                             {% endfor %}
-                        </table>
+                        </table> -->
+                        <br>
+                        <form action="">
+                            <h4>Change date to see it's data</h4>&emsp;
+                            <input type="date" name="date" id="">
+                            <button>Submit</button>
+                        </form>
                         <div class="prog_container">
                             <div class="prog">
                                 <div class="chartjs">

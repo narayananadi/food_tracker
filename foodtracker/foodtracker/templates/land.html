@@ -58,16 +58,52 @@
             <p>Calorie Tracker is where health conscious mind gets relief because here you can easily track your daily
                 calorie intake. <br>
                 It is a good habit to be vary of your health and hence, this is where we come in. Please do register
-                yourself by <br> clicking "Register" above and proceed to create your daily logs of consumption</p>
+                yourself by <br> clicking "Register" above and proceed to create your daily logs of consumption. You
+                will also have access to your highly<br>descriptive dashboard.</p>
         </div>
+
+        <div class="prog_container">
+            <div class="card_sur">
+                <div class="card">
+                    <img class="card_img" src="{{ url_for('static', filename='css/img/mali.jpg') }}" alt="Avatar" >
+                    <div class="container_card">
+                        <h4><b>Muhammad Ali</b></h4>
+                        <p>“I don`t count my sit-ups. I only start counting when it starts hurting because they`re the
+                            only ones that count.”</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card_img" src="{{ url_for('static', filename='css/img/buddha.jpg') }}" alt="Avatar" >
+                    <div class="container_card">
+                        <h4><b>Buddha</b></h4>
+                        <p>“To keep the body in good health is a duty… otherwise we shall not be able to keep our mind strong and clear.”</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card_img" src="{{ url_for('static', filename='css/img/jack.jpg') }}" alt="Avatar" >
+                    <div class="container_card">
+                        <h4><b>Jack LaLanne</b></h4>
+                        <p>“Exercise is king. Nutrition is queen. Put them together and you`ve got a kingdom.”</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card_img" src="{{ url_for('static', filename='css/img/rock.jpg') }}" alt="Avatar" >
+                    <div class="container_card">
+                        <h4><b>Dwayne Johnson</b></h4>
+                        <p>“There is no substitute for hardwork. Always be humble and hungry.”</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+<br>
         <div class="prog_container">
             <h1>Track your BMI here</h1>
             <div class="bmi_lan">
                 <input placeholder="Weight" class="form__input_lan" type="number" name="weight" id="weight">
                 <label for="division">÷</label>
                 <input placeholder="Height" class="form__input_lan" type="number" name="height" id="height">
-                <label for="square"><sup>2</sup></label>     
-                <button onclick="bmicheck()" type="submit" value="">=</button>     
+                <label for="square"><sup>2</sup></label>
+                <button onclick="bmicheck()" type="submit" value="">=</button>
                 <label id="res" for="answer">?</label>
             </div>
         </div>
