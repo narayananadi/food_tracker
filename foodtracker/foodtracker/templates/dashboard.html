@@ -21,7 +21,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body onload="depression()">
+<body>
     <div class="container-fluid" id="wrapper">
         <div class="row" id="homeJumbo">
             <div class="overlay"></div>
@@ -181,7 +181,11 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="prog_container">
+                            <button onclick="add_counter()">prev date</button>
+                            
+                            <button onclick="sub_counter()">next date</button>
                             <!-- <table class="det_tab">
                                 <tr>
                                     <th>Weight</th>
@@ -222,6 +226,7 @@
                                 {% endfor %}
                             </table> -->
                         </div>
+
     </center>
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
@@ -244,14 +249,14 @@
         const prot = document.getElementById('prot').getContext('2d');
         const cbhs = document.getElementById('cbhs').getContext('2d');
         Chart.defaults.color = "#000000";
+        var slice_count = -30
         var chart_data = JSON.parse({{ date_wise_data | tojson }})
-        var counter = 0
-        new Chart(cal, {
+        var proteins_chart  = new Chart(cal, {
             type: 'line',
             data: {
-                labels: chart_data["proteins"]["date"],
+                labels: chart_data["proteins"]["date"].slice(slice_count,),
                 datasets: [{
-                    data: chart_data["proteins"]["value"],
+                    data: chart_data["proteins"]["value"].slice(slice_count,),
                     label: "Proteins",
                     borderColor: "#3e95cd",
                     backgroundColor: "#7bb6dd",
@@ -276,12 +281,12 @@
             }
         });
 
-        new Chart(fts, {
+        var fats_chart = new Chart(fts, {
             type: 'line',
             data: {
-                labels: chart_data["fats"]["date"],
+                labels: chart_data["fats"]["date"].slice(slice_count,),
                 datasets: [{
-                    data: chart_data["fats"]["value"],
+                    data: chart_data["fats"]["value"].slice(slice_count,),
                     label: "Fats",
                     borderColor: "#3cba9f",
                     backgroundColor: "#71d1bd",
@@ -306,12 +311,12 @@
             }
         });
 
-        new Chart(prot, {
+        var carbs_chart = new Chart(prot, {
             type: 'line',
             data: {
-                labels: chart_data["carbs"]["date"],
+                labels: chart_data["carbs"]["date"].slice(slice_count,),
                 datasets: [{
-                    data: chart_data["carbs"]["value"],
+                    data: chart_data["carbs"]["value"].slice(slice_count,),
                     label: "Carbs",
                     borderColor: "#c45850",
                     backgroundColor: "#d78f89",
@@ -336,12 +341,12 @@
             }
         });
 
-        new Chart(cbhs, {
+        var cal_chart = new Chart(cbhs, {
             type: 'line',
             data: {
-                labels: chart_data["calories"]["date"],
+                labels: chart_data["calories"]["date"].slice(slice_count,),
                 datasets: [{
-                    data: chart_data["calories"]["value"],
+                    data: chart_data["calories"]["value"].slice(slice_count,),
                     label: "Calories",
                     borderColor: "#ffa500",
                     backgroundColor: "#ffc04d",
@@ -366,6 +371,7 @@
             }
         });
     </script>
+ <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
 </body>
 
