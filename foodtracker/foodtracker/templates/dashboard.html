@@ -118,7 +118,18 @@
                             <!-- <button type="button"><a href="{{ url_for('main.add') }}">Add Food Items</a></button> -->
                             <button type="button"><a href="{{ url_for('main.create') }}">Add Logs</a></button>
                         </div>
-                        <!-- <h3>Todays list</h3>
+                       
+                        <br>
+                        <form action="/dashboard" method="post" name="custom_date_form" id="custom_date_form">
+                            <h4>Change date to see it's data</h4>&emsp;
+                            <input type="date" name="custom_date" id="" required>
+                            <button type="submit" form="custom_date_form">Submit</button>
+                        </form>
+                        <br>
+                        <form action="/dashboard" method="get" name="curr_date_form" id="curr_date_form">
+                            <button type="submit" form="curr_date_form">Current Date</button>
+                        </form>
+                        <h3>Food Logs</h3>
                         <table>
                             <tr>
                                 <th>Food Name</th>
@@ -128,6 +139,11 @@
                                 <th>Calories</th>
                                 <th>Count</th>
                             </tr>
+                            {%if not food_list %}
+                            <tr>
+                            <td colspan="6" align="center">NIL</td>
+                            </tr>
+                            {% else %}
                             {% for data in food_list %}
                             <tr>
                                 <td>{{ data["food_name"]}}</td>
@@ -138,13 +154,8 @@
                                 <td>{{ data["count"]}}</td>
                             </tr>
                             {% endfor %}
-                        </table> -->
-                        <br>
-                        <form action="">
-                            <h4>Change date to see it's data</h4>&emsp;
-                            <input type="date" name="date" id="">
-                            <button>Submit</button>
-                        </form>
+                            {% endif %}
+                        </table>
                         <div class="prog_container">
                             <div class="prog">
                                 <div class="chartjs">
@@ -170,7 +181,7 @@
                             </div>
                         </div>
                         <div class="prog_container">
-                            <table class="det_tab">
+                            <!-- <table class="det_tab">
                                 <tr>
                                     <th>Weight</th>
                                     <th>Height</th>
@@ -189,11 +200,11 @@
                                     <td>{{ user_details.fats }}</td>
                                     <td id="res"></td>
                                 </tr>
-                            </table>
+                            </table> -->
                         </div>
                         <br><br><br>
                         <div class="prog_container">
-                            <table class="det_tab">
+                            <!-- <table class="det_tab">
                                 <tr>
                                     <th>Date</th>
                                     <th>food id</th>
@@ -208,7 +219,7 @@
                                     <td>{{ data.uid }}</td>
                                 </tr>
                                 {% endfor %}
-                            </table>
+                            </table> -->
                         </div>
     </center>
     <!-- jQuery -->
@@ -233,6 +244,7 @@
         const cbhs = document.getElementById('cbhs').getContext('2d');
         Chart.defaults.color = "#000000";
         var chart_data = JSON.parse({{ date_wise_data | tojson }})
+        var counter = 0
         new Chart(cal, {
             type: 'line',
             data: {

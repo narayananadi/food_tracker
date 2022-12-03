@@ -257,11 +257,13 @@ def logout():
 
 @main.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    if "name" not in session.keys():
+    if "name" not in session.keys() :
         return redirect(url_for('main.login'))
 
     uid = session["name"]
     usr_dat = db.session.execute(UserData.query.filter_by(id=uid)).first()
+    if not usr_dat:
+        return redirect(url_for('main.login'))
 
     user_details = {"email": usr_dat[3],
                     "name": usr_dat[1],
@@ -276,10 +278,10 @@ def dashboard():
     log_data = Log.query.filter_by(uid=uid).all()
     for x in log_data:
         list_of_foods.append(x.fid)
+   
 
     today = date.today()
-    current_proteins, current_calories, current_fats, current_carbs = calculate_total(log_data, str(today))
-    current_total_progress = {"proteins": current_proteins, "carbs":current_carbs, "calories":current_calories, "fats":current_fats} 
+    
     food_data = Food.query.filter(Food.uid.like(uid), Food.fid.in_(list_of_foods)).all()
     start_date = os.environ['START_DATE']
     start_date = start_date.split("-")
@@ -317,15 +319,35 @@ def dashboard():
             date_wise_data["carbs"]["value"].append(0)
             date_wise_data["calories"]["value"].append(0)
 
+
     date_wise_data = json.dumps(date_wise_data)
     food_list = get_todays_list(log_data,today)
+    current_proteins, current_calories, current_fats, current_carbs = calculate_total(log_data, str(today))
+    if request.method == "POST":
+        if "custom_date" in request.form:
+            custom_date = request.form.get("custom_date")
+            print(custom_date)
+            food_list = get_todays_list(log_data,custom_date)
+            current_proteins, current_calories, current_fats, current_carbs = calculate_total(log_data, str(custom_date))
+
+
+        # if "curr_date" in request.form:
+        #     curr_date = request.form["curr_date"]
+        #     food_list = get_todays_list(log_data,today)
+        #     current_proteins, current_calories, current_fats, current_carbs = calculate_total(log_data, str(today))
+        
+
+    current_total_progress = {"proteins": current_proteins, "carbs":current_carbs, "calories":current_calories, "fats":current_fats} 
+
+
+   
     return render_template('dashboard.html', user_details=user_details,
      food_data=food_data,
       log_data=log_data, 
        today=today,
         date_wise_data=date_wise_data, 
         current_total_progress= current_total_progress,
-        food_list = food_list
+        food_list = food_list,
         )
 
 
