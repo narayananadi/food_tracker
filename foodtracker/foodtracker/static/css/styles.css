@@ -78,8 +78,14 @@ li{
 .nav-justified>li>a {
 	color: white;
 	/* font-weight: bolder; */
+	font-size: x-large;
 	width: max-content;
 }
+
+.nav-justified{
+	margin-left: -105px;
+}
+
 .nav>li>a:hover, .nav>li>a:focus {
 	background: #00000066;
 }

@@ -19,6 +19,8 @@
   initial-value: 0;
 }
 
+
+
 div[role="progressbar"] {
   --size: 15rem;
   --fg: #3f83c6;
@@ -88,10 +90,7 @@ div[role="progressbar"]::before {
   /* margin-right: 100px; */
   padding: 8px;
   border-radius: 5px;
-  border-top: none;
-  border-right: none;
-  border-bottom: 10px solid #77a5cd;
-  border-left: none;
+border: none;
   color: #deffff !important;
   position: relative;
   background-color: #00308F;
@@ -115,12 +114,12 @@ div[role="progressbar"]::before {
   /* background-color: #ecf0f3; */
   max-width: fit-content;
   max-height: fit-content;
-  padding: 5px;
-  margin-right: 30px;
-  border-radius: 8px;
+  /* padding: 5px; */
+  margin-right: 20px;
+  /* border-radius: 8px; */
 
   /* From https://css.glass */
-  /* background: #4387bb6e;
+  /* background: #325067;
   border-radius: 6px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6.3px);
@@ -147,9 +146,30 @@ body {
 }
 
 .chartjs {
-  width: 50vh;
+  width: 90vh;
   border: 1px solid black;
+  border-radius: 8px;
+}
+
+.curr_date{
+  height: max-content !important;
+  width: max-content !important;
+  margin-left: 10px;
+  margin-top: 42px;
+  font-size: 15px !important;
+  padding: 5px;
+  background-color: forestgreen !important;
+}
+
+.cus_date{
+  height: max-content !important;
+  width: max-content !important;
+  padding: 8px !important;
+  font-size: 15px !important;
+  background-color: #00308F;
+  color: #deffff;
   border-radius: 5px;
+  border: none;
 }
 
 .tab_data {
@@ -192,7 +212,7 @@ th:last-child  {
   border-bottom-right-radius: 10px;
 }
 
-form{
+.ch_date{
   padding: 10px;
   border: 1px solid black;
   width: max-content;
@@ -215,4 +235,11 @@ input {
 }
 input:focus {
   box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+}
+
+.prog_container>a{
+  font-size: xx-large;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }

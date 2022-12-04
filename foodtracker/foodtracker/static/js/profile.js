@@ -12,11 +12,8 @@ function depression() {
 }
 
 function bmicheck() {
-    var w = document.getElementById("weight").value
-    var h = document.getElementById("height").value
-    if(!h.includes(".")){
-        var v = h/100
-    }
-    var res = w/(v*v)
+    var w = Number.parseFloat(document.getElementById("weight").value)
+    var h = Number.parseFloat(document.getElementById("height").value)
+    var res = w/(h*h)
     document.getElementById("res").innerHTML=res.toFixed(2)+" kg/m<sup>2</sup>"
 }

@@ -22,26 +22,27 @@
             <div class="row" id="homeJumbo">
                 <div class="overlay"></div>
                 <div class="col-lg-12">
-                    <h1>
+                    <h1>Welcome to
                         <a href="{{ url_for('main.index') }}">CALORIE TRACKER</a>
                     </h1>
-
-                    <div class="row t20">
-                        <div class="col-lg-4 col-lg-offset-4">
-                            <ul class="nav nav-pills nav-justified">
-                                <li role="presentation" class="active">
-                                    <a href="{{ url_for('main.index') }}" title="Home">Home</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#weight" title="Add Food Item">BMI</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="{{ url_for('main.user_profile') }}" title="Profile">Register</a>
-                                </li>
-                                <li role="login">
-                                    <a href="{{ url_for('main.login') }}" title="login">Login</a>
-                                </li>
-                            </ul>
+                    <div style="margin-left: -185px;" class="prog_container">
+                        <div class="row t20">
+                            <div class="col-lg-4 col-lg-offset-4">
+                                <ul class="nav nav-pills nav-justified">
+                                    <li role="presentation" class="active">
+                                        <a href="{{ url_for('main.index') }}" title="Home">Home🏠</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#weight" title="Add Food Item">BMI🧮</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="{{ url_for('main.user_profile') }}" title="Profile">Register📰</a>
+                                    </li>
+                                    <li role="login">
+                                        <a href="{{ url_for('main.login') }}" title="login">Login🙍‍♂️</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,12 +61,13 @@
                 It is a good habit to be vary of your health and hence, this is where we come in. Please do register
                 yourself by <br> clicking "Register" above and proceed to create your daily logs of consumption. You
                 will also have access to your highly<br>descriptive dashboard.</p>
+            <p></p>
         </div>
 
         <div class="prog_container">
             <div class="card_sur">
                 <div class="card">
-                    <img class="card_img" src="{{ url_for('static', filename='css/img/mali.jpg') }}" alt="Avatar" >
+                    <img class="card_img" src="{{ url_for('static', filename='css/img/mali.jpg') }}" alt="Avatar">
                     <div class="container_card">
                         <h4><b>Muhammad Ali</b></h4>
                         <p>“I don`t count my sit-ups. I only start counting when it starts hurting because they`re the
@@ -73,21 +75,22 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img class="card_img" src="{{ url_for('static', filename='css/img/buddha.jpg') }}" alt="Avatar" >
+                    <img class="card_img" src="{{ url_for('static', filename='css/img/buddha.jpg') }}" alt="Avatar">
                     <div class="container_card">
                         <h4><b>Buddha</b></h4>
-                        <p>“To keep the body in good health is a duty… otherwise we shall not be able to keep our mind strong and clear.”</p>
+                        <p>“To keep the body in good health is a duty… otherwise we shall not be able to keep our mind
+                            strong and clear.”</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img class="card_img" src="{{ url_for('static', filename='css/img/jack.jpg') }}" alt="Avatar" >
+                    <img class="card_img" src="{{ url_for('static', filename='css/img/jack.jpg') }}" alt="Avatar">
                     <div class="container_card">
                         <h4><b>Jack LaLanne</b></h4>
                         <p>“Exercise is king. Nutrition is queen. Put them together and you`ve got a kingdom.”</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img class="card_img" src="{{ url_for('static', filename='css/img/rock.jpg') }}" alt="Avatar" >
+                    <img class="card_img" src="{{ url_for('static', filename='css/img/rock.jpg') }}" alt="Avatar">
                     <div class="container_card">
                         <h4><b>Dwayne Johnson</b></h4>
                         <p>“There is no substitute for hardwork. Always be humble and hungry.”</p>
@@ -95,7 +98,7 @@
                 </div>
             </div>
         </div>
-<br>
+        <br>
         <div class="prog_container">
             <h1>Track your BMI here</h1>
             <div class="bmi_lan">

@@ -35,19 +35,19 @@
                     <div class="col-lg-4 col-lg-offset-4">
                         <ul class="nav nav-pills nav-justified">
                             <li role="presentation" class="active">
-                                <a href="{{ url_for('main.index') }}" title="Home">Home</a>
+                                <a href="{{ url_for('main.index') }}" title="Home">Home🏠</a>
                             </li>
                             <li role="presentation">
-                                <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
+                                <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item➕</a>
                             </li>
                             <li role="presentation">
-                                <a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
+                                <a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard📰</a>
                             </li>
                             <li role="presentation">
-                                <a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
+                                <a href="{{ url_for('main.user_profile') }}" title="Profile">Profile🤾‍♂️</a>
                             </li>
                             <li role="login">
-                                <a href="/logout" title="logout">Logout</a>
+                                <a href="/logout" title="logout">Logout➡️</a>
                             </li>
                         </ul>
                     </div>
@@ -55,9 +55,10 @@
             </div>
         </div>
     </div>
-    <form id="create_fields" name="create_fields" method="post" action="/create_log">
     <div class="prog_container">
-        <div class="log_form">
+    <form id="create_fields" name="create_fields" method="post" action="/create_log">
+        <div class="prog_container">
+            <div class="log_form">
                 <label for="Date">
                     <h4>Date</h4>
                 </label><br>
@@ -65,24 +66,23 @@
                 <label for="food_list">
                     <h4>Choose what you had today</h4>
                 </label><br>
-                <h4>food list</h4>
-                <label for="food">choose a food</label>
                 <select id="food_dropdown" onchange="add_field(this)">
+                    <option value="Select Item...">Select Item...</option>
                     {% for food in food_data %}
                     <option value="{{food.fid+'_'+food.name}}">{{ food.name }}</option>
                     {% endfor %}
                 </select>
                 <br><br>
                 <span id="warning"></span>
-        </div>
-        <div class="checkout">
-            <h4>Checkout</h4>
-            <div id="insert_fields"></div>
-            <button class="button_pro" type="submit" form="create_fields">Submit</button>
-        </div>
+            </div>
+            <div class="checkout">
+                <h4>Checkout</h4>
+                <div id="insert_fields"></div>
+                <button class="button_pro" type="submit" form="create_fields">Submit</button>
+            </div>
     </form>
+</div>
 
-    </div>
 
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
