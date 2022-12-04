@@ -34,19 +34,19 @@
                     <div class="col-lg-4 col-lg-offset-4">
                         <ul class="nav nav-pills nav-justified">
                             <li role="presentation" class="active">
-                                <a href="{{ url_for('main.index') }}" title="Home">Home</a>
+                                <a href="{{ url_for('main.index') }}" title="Home">Home🏠</a>
                             </li>
                             <li role="presentation">
                                 <a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
                             </li>
                             <li role="presentation">
-                                <a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard</a>
+                                <a href="{{ url_for('main.dashboard') }}" title="Profile">Dashboard📰</a>
                             </li>
                             <li role="presentation">
-                                <a href="{{ url_for('main.user_profile') }}" title="Profile">Profile</a>
+                                <a href="{{ url_for('main.user_profile') }}" title="Profile">Profile🤾‍♂️</a>
                             </li>
                             <li role="login">
-                                <a href="/logout" title="logout">Logout</a>
+                                <a href="/logout" title="logout">Logout➡️</a>
                             </li>
                         </ul>
                     </div>
@@ -86,7 +86,7 @@
                             <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0"
                                 aria-valuemax="100" style="--value:0">
                                 {% endif %}
-                                <span class="nutr">Proteins<p>{{current_total_progress['protiens']}}gms /
+                                <span class="nutr">Proteins<p>{{current_total_progress['proteins']}}gms /
                                         {{user_details['proteins']}}gms</p></span>
                             </div>
 
@@ -183,10 +183,10 @@
                         </div>
 
                         <div class="prog_container">
-                            <button onclick="add_counter()">prev date</button>
-                            
-                            <button onclick="sub_counter()">next date</button>
-                            <!-- <table class="det_tab">
+                            <a onclick="add_counter()">👈Prev Date</a>
+                                    &emsp;&emsp;&emsp;&emsp;
+                            <a onclick="sub_counter()">Next Date👉</a>
+                                    <!-- <table class="det_tab">
                                 <tr>
                                     <th>Weight</th>
                                     <th>Height</th>
@@ -251,7 +251,7 @@
         Chart.defaults.color = "#000000";
         var slice_count = -30
         var chart_data = JSON.parse({{ date_wise_data | tojson }})
-        var proteins_chart  = new Chart(cal, {
+        var proteins_chart = new Chart(cal, {
             type: 'line',
             data: {
                 labels: chart_data["proteins"]["date"].slice(slice_count,),
@@ -271,7 +271,7 @@
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            display: false 
+                            display: false
                         },
                         grid: {
                             display: false
@@ -301,7 +301,7 @@
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            display: false 
+                            display: false
                         },
                         grid: {
                             display: false
@@ -331,7 +331,7 @@
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            display: false 
+                            display: false
                         },
                         grid: {
                             display: false
@@ -361,7 +361,7 @@
                     x: {
                         beginAtZero: true,
                         ticks: {
-                            display: false 
+                            display: false
                         },
                         grid: {
                             display: false
@@ -371,7 +371,7 @@
             }
         });
     </script>
- <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
 </body>
 
