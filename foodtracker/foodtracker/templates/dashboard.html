@@ -105,18 +105,7 @@
                                 <br><br>
                             </div>
                         </div>
-                        <!-- <div class="prog_container">
-                            <small class="small">{{current_total_progress['calories']}}gms consumed out of
-                                {{user_details['calories']}}gms</small>
-                            <small class="small">{{current_total_progress['fats']}}gms consumed out of
-                                {{user_details['fats']}}gms</small>
-                            <small class="small">{{current_total_progress['proteins']}}gms consumed out of
-                                {{user_details['proteins']}}gms</small>
-                            <small class="small">{{current_total_progress['carbs']}}gms consumed out of
-                                {{user_details['carbs']}}gms</small>
-                        </div> -->
                         <div class="prog_container">
-                            <!-- <button type="button"><a href="{{ url_for('main.add') }}">Add Food Items</a></button> -->
                             <button type="button"><a href="{{ url_for('main.create') }}">Add Logs</a></button>
                         </div>
 
@@ -183,6 +172,7 @@
                         </div>
 
                         <div class="prog_container">
+<<<<<<< Updated upstream
                             <a onclick="add_counter()">👈Prev Date</a>
                                     &emsp;&emsp;&emsp;&emsp;
                             <a onclick="sub_counter()">Next Date👉</a>
@@ -206,26 +196,13 @@
                                     <td id="res"></td>
                                 </tr>
                             </table> -->
+=======
+                            <button onclick="add_counter()">prev date</button>
+                            
+                            <button onclick="sub_counter()">next date</button>
+>>>>>>> Stashed changes
                         </div>
                         <br><br><br>
-                        <div class="prog_container">
-                            <!-- <table class="det_tab">
-                                <tr>
-                                    <th>Date</th>
-                                    <th>food id</th>
-                                    <th>count</th>
-                                    <th>user id</th>
-                                </tr>
-                                {% for data in log_data %}
-                                <tr>
-                                    <td>{{ data.pub_date }}</td>
-                                    <td>{{ data.fid }}</td>
-                                    <td>{{ data.count }}</td>
-                                    <td>{{ data.uid }}</td>
-                                </tr>
-                                {% endfor %}
-                            </table> -->
-                        </div>
 
     </center>
     <!-- jQuery -->

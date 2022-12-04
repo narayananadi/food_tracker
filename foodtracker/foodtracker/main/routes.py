@@ -36,18 +36,28 @@ def calculate_total(log_data, date):
     return proteins, calories, fats, carbs
 
 def get_todays_list(log_data,date):
+    today_dict = {}
     today_list = []
     for data in log_data:
         if str(data.pub_date) == str(date):
             food_details = Food.query.filter_by(fid=data.fid).first()
-            today_list.append({
-            "food_name":food_details.name, 
-            "proteins": food_details.proteins, 
-            "carbs":food_details.carbs, 
-            "fats":food_details.fats, 
-            "calories": food_details.calories,
-            "count": data.count
-            })
+            if food_details.name in today_dict:
+                today_dict[food_details.name]["count"]+=data.count
+            else:
+                today_dict[food_details.name] = {
+                "food_name":food_details.name, 
+                "proteins": food_details.proteins, 
+                "carbs":food_details.carbs, 
+                "fats":food_details.fats, 
+                "calories": food_details.calories,
+                "count": data.count
+                }
+    for items in today_dict.values():
+        items["total_proteins"] = items["proteins"]*items["count"]
+        items["total_fats"] = items["fats"]*items["count"]
+        items["total_calories"] = items["calories"]*items["count"]
+        items["total_carbs"] = items["carbs"]*items["count"]
+        today_list.append(items)
     return today_list
 
 @main.route('/')
@@ -330,12 +340,6 @@ def dashboard():
             food_list = get_todays_list(log_data,custom_date)
             current_proteins, current_calories, current_fats, current_carbs = calculate_total(log_data, str(custom_date))
 
-
-        # if "curr_date" in request.form:
-        #     curr_date = request.form["curr_date"]
-        #     food_list = get_todays_list(log_data,today)
-        #     current_proteins, current_calories, current_fats, current_carbs = calculate_total(log_data, str(today))
-        
 
     current_total_progress = {"proteins": current_proteins, "carbs":current_carbs, "calories":current_calories, "fats":current_fats} 
 
