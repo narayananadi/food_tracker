@@ -28,7 +28,7 @@
             <div class="overlay"></div>
             <div class="col-lg-12">
                 <h1>Welcome to
-                    <a href="{{ url_for('main.index') }}">FOOD TRACKER</a>, {{ user_details.name }}!
+                    <a href="{{ url_for('main.index') }}">CALORIE TRACKER</a>, {{ user_details.name }}!
                 </h1>
 
                 <div class="row t20">
@@ -67,7 +67,7 @@
                     <h4>Choose what you had today</h4>
                 </label><br>
                 <select id="food_dropdown" onchange="add_field(this)">
-                    <option value="Select Item...">Select Item...</option>
+                    <option value="false">Select Item...</option>
                     {% for food in food_data %}
                     <option value="{{food.fid+'_'+food.name}}">{{ food.name }}</option>
                     {% endfor %}

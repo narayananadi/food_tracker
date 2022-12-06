@@ -33,9 +33,9 @@ function add_field(val){
             to_insert.innerHTML = to_insert.innerHTML + "<input name='input_field_"+field_count+"' value='"+id+"' type='hidden'></input>"
             to_insert.innerHTML = to_insert.innerHTML + "<label>"+name+"</label>"
             to_insert.innerHTML = to_insert.innerHTML + "<input type='number' name='count_field_"+field_count+"' value=1></input>"
-            to_insert.innerHTML = to_insert.innerHTML + " <button type='button' style='background-color: forestgreen; color: white' onclick=\"add_it('count_field_"+field_count+"')\">+</button>"
-            to_insert.innerHTML = to_insert.innerHTML + " <button type='button' style='background-color: orange; color: white' onclick=\"sub_it('count_field_"+field_count+"')\">-</button>"
-            to_insert.innerHTML = to_insert.innerHTML + " <button type='button' style='background-color: crimson; color: white' onclick=\"del_it('count_field_"+field_count+"')\">Delete</button>"
+            to_insert.innerHTML = to_insert.innerHTML + " <button type='button' style='background-color: forestgreen; color: white; margin-top: 5px' onclick=\"add_it('count_field_"+field_count+"')\">+</button>"
+            to_insert.innerHTML = to_insert.innerHTML + " <button type='button' style='background-color: orange; color: white; margin-top: 5px' onclick=\"sub_it('count_field_"+field_count+"')\">-</button>"
+            to_insert.innerHTML = to_insert.innerHTML + " <button type='button' style='background-color: crimson; color: white; margin-top: 5px' onclick=\"del_it('count_field_"+field_count+"')\">Delete</button>"
             to_insert.innerHTML = to_insert.innerHTML + "<br>"
             field_count +=1
         }else{
