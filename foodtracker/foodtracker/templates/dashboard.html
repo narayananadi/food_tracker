@@ -26,7 +26,7 @@
         <div class="row" id="homeJumbo">
             <div class="overlay"></div>
             <div class="col-lg-12">
-                <h1>Welcome to<a href="{{ url_for('main.index') }}">FOOD TRACKER</a>, {{ user_details.name }}!
+                <h1>Welcome to<a href="{{ url_for('main.index') }}"> FOOD TRACKER</a>, {{ user_details.name }}!
                 </h1>
 
                 <div class="row t20">
@@ -55,7 +55,9 @@
     </div>
     <center>
         <div class="pos">
+            <h3>Your set target<hr></h3>
             <div class="prog_container">
+                
                 {% if user_details['calories'] !=0 %}
                 <div class="bar_pro" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
                     style="--value: {{ ((current_total_progress['calories'] / user_details['calories'])*100)|int }}">
@@ -111,7 +113,7 @@
                         <br>
                         <div class="prog_container ch_date">
                             <form action="/dashboard" method="post" name="custom_date_form" id="custom_date_form">
-                                <h4>Change date to see it's data</h4>&emsp;
+                                <h4>Change date to see it's data</h4>
                                 <input type="date" name="custom_date" id="" required>
                                 <button class="cus_date" type="submit" form="custom_date_form">Submit</button>
                             </form><br>
@@ -183,16 +185,12 @@
     <script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
     <!-- Bootstrap JavaScript -->
     <script src="{{ url_for('static', filename='bs/js/bootstrap.min.js') }}"></script>
-    <!-- <script src="{{ url_for('static', filename='js/create.js') }}"></script> -->
     <!-- chartjs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js"
         integrity="sha512-tQYZBKe34uzoeOjY9jr3MX7R/mo7n25vnqbnrkskGr4D6YOoPYSpyafUAzQVjV6xAozAqUFIEFsCO4z8mnVBXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="{{ url_for('static', filename='js/profile.js') }}"></script> -->
-    <!-- chart scripting starts here
-         cal-calorie, fts- fats, prot- protein, cbhs carbohydrates -->
 
     <script>
         const cal = document.getElementById('cal').getContext('2d');

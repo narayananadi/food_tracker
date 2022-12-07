@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
+
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='css/img/favicon.ico') }}">
-    <!-- <link rel="stylesheet"  href="login.css"> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
@@ -15,18 +15,20 @@
             <form class="form" id="a-form" name="a-form" method="post" action="/signup">
                 <h2 class="form_title title">Create Account</h2>
                 <div class="form__icons"></div>
-                <input class="form__input" type="text" placeholder="Name", name="username" required>
-                <input class="form__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Put valid email ID such as example@example.com" placeholder="Email", name="email" required>
+                <input class="form__input" type="text" placeholder="Name" , name="username" required>
+                <input class="form__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    title="Put valid email ID such as example@example.com" placeholder="Email" , name="email" required>
                 {% if error_dict["email_exists"] %}<span class="validity">Email already exists</span> {% endif%}
-                <input class="form__input" type="password" placeholder="Password", name="password" required>
+                <input class="form__input" type="password" placeholder="Password" , name="password" required>
                 <button class="form__button button" type="submit">SIGN UP</button>
             </form>
         </div>
         <div class="container b-container" id="b-container">
             <form class="form" id="b-form" name="b-form" method="post" action="/login">
                 <h2 class="form_title title">Sign in to Website</h2>
-                <div class="form__icons"></div> 
-                <input class="form__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" name="email" required>
+                <div class="form__icons"></div>
+                <input class="form__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    placeholder="Email" name="email" required>
                 {% if error_dict["login_err"] %}<span class="validity">Email Doesn't Exist</span> {% endif%}
                 <input class="form__input" type="password" placeholder="Password" name="password" required>
                 {% if error_dict["wrong_pass"] %}<span class="validity">Please enter correct password</span> {% endif%}
@@ -39,7 +41,8 @@
             <div class="switch__circle switch__circle--t"></div>
             <div class="switch__container" id="switch-c1">
                 <h2 class="switch__title title">Welcome !</h2>
-                <p class="switch__description description">To keep track of your daily consumption please login with your personal
+                <p class="switch__description description">To keep track of your daily consumption please login with
+                    your personal
                     info</p>
                 <button class="switch__button button switch-btn">SIGN IN</button>
             </div>
@@ -50,8 +53,7 @@
             </div>
         </div>
     </div>
-    <!-- <script src="login.js"></script> -->
-    <script src="{{ url_for('static', filename='js/login.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </body>
 
 </html>
