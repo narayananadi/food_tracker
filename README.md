@@ -1,1 +1,1 @@
-Video: https://youtu.be/0ROCLcU42Jc
+run command: pipenv run flask run
